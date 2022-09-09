@@ -71,17 +71,22 @@
                                                 <td class="text-center">{{ $data->kode }}</td>
                                                 <td class="text-center">{{ $data->nama }}</td>
                                                 <td class="text-center">
-                                                    <a href="#">
-                                                        <button type="button" class="btn btn-warning"><i
-                                                                class="ri-edit-box-line" data-bs-toggle="modal"
-                                                                data-bs-target="#editModal"
-                                                                data-bs-whatever="@edit"></i></button>
-                                                    </a>
+                                                    <form action="{{ route('delete.aktiva', ['id' => $data->id]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <a href="#">
+                                                            <button type="button" class="btn btn-warning"
+                                                                data-bs-toggle="modal" data-bs-target="#editModal"
+                                                                data-target-id="{{ $data->nama }}">
+                                                                <i class="ri-add-box-line mb-3"></i></button>
+                                                        </a>
 
-                                                    <a href="#">
-                                                        <button type="button" class="btn btn-danger"><i
-                                                                class="ri-delete-bin-2-line"></i></button>
-                                                    </a>
+                                                        <a href="#">
+                                                            <button type="submit" class="btn btn-danger"><i
+                                                                    class="ri-delete-bin-2-line"></i></button>
+                                                        </a>
+                                                    </form>
+
                                                 </td>
 
                                             </tr>
@@ -129,23 +134,22 @@
                         </div>
                     </div>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
+                    <!-- Edit Modal -->
+                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edit Data Aktiva</h5>
+                                    <h5 class="modal-title" id="editModal">Edit Data Aktiva</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('simpan.aktiva') }}" method="POST">
+                                    <form action="{{ route('update.aktiva', ['id' => $data->id]) }}" method="POST">
                                         @csrf
                                         <div class="row mb-3">
                                             <label for="name" class="col-sm-2 col-form-label">Nama</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nama" id="name">
+                                                <input type="text" class="form-control" name="nama" id="pass_id">
                                             </div>
                                         </div>
 
@@ -159,9 +163,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
         </section>
 
     </main><!-- End #main -->
@@ -169,23 +171,11 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
 <script>
-    var editModal = document.getElementById('editModal')
-    editModal.addEventListener('show.bs.modal', function(event) {
-        console.log('modal dibuka')
-        // Button that triggered the modal
-        var button = event.relatedTarget
-        // Extract info from data-bs-* attributes
-        var name = button.getAttribute('data-bs-whatever')
-        // If necessary, you could initiate an AJAX request here
-        // and then do the updating in a callback.
-        //
-        // Update the modal's content.
-        var modalTitle = editModal.querySelector('.modal-title')
-        var modalBodyInput = editModal.querySelector('.modal-body input')
-
-        modalTitle.textContent = 'New message to ' + name
-        modalBodyInput.value = name
-    })
+    $(document).ready(function() {
+        $("#editModal").on("show.bs.modal", function(e) {
+            var nama = $(e.relatedTarget).data('target-id');
+            $('#pass_id').val(nama);
+        });
+    });
 </script>

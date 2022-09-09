@@ -30,3 +30,5 @@ Route::get('/data-aktiva', [App\Http\Controllers\AktivaController::class, 'index
 Route::get('/tambah/data-aktiva', [App\Http\Controllers\AktivaController::class, 'tambah'])->name('tambah.aktiva');
 Route::post('/simpan/data-aktiva', [App\Http\Controllers\AktivaController::class, 'simpan'])->name('simpan.aktiva');
 Route::get('/edit/data-aktiva/{id}', [App\Http\Controllers\AktivaController::class, 'edit'])->name('edit.aktiva');
+Route::post('/update/data-aktiva={id}', [App\Http\Controllers\AktivaController::class, 'update'])->name('update.aktiva');
+Route::post('/hapus/data-aktiva={id}', [App\Http\Controllers\AktivaController::class, 'delete'])->name('delete.aktiva');

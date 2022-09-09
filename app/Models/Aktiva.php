@@ -10,5 +10,5 @@ class Aktiva extends Model
     use HasFactory;
 
     protected $table = 'aktiva';
-    protected $fillable = ['kode', 'number', 'nama'];
+    protected $fillable = ['kode', 'nama'];
 }
