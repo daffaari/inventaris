@@ -9,7 +9,7 @@ class LaporanAktiva extends Model
 {
     use HasFactory;
 
-    protected $table = ['laporan_aktiva'];
+    protected $table = 'laporan_aktiva';
     protected $fillable = [
         'aktiva_id',
         'tgl_perolehan',

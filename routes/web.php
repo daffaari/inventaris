@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::post('/login-handler', [App\Http\Controllers\AuthController::class, 'loginHandler'])->name('loginHandler');
-
+Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
 // Route Dashboard //
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

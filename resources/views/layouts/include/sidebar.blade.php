@@ -24,10 +24,10 @@
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link {{ \Request::route()->getName() == 'aktiva' ? '' : 'collapsed' }}"
-                        href="/data-aktiva">
+                    <a class="nav-link {{ \Request::route()->getName() == 'laporan.aktiva' ? '' : 'collapsed' }}"
+                        href="/laporan-aktiva">
                         <i class="bi bi-clipboard2-data"></i>
-                        <span>Data Aktiva</span>
+                        <span>Laporan Aktiva</span>
                     </a>
                 </li>
             </ul>
