@@ -19,7 +19,15 @@
                     <a class="nav-link {{ \Request::route()->getName() == 'aktiva' ? '' : 'collapsed' }}"
                         href="/data-aktiva">
                         <i class="bi bi-clipboard2-data"></i>
-                        <span>Aktiva</span>
+                        <span>Data Aktiva</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link {{ \Request::route()->getName() == 'aktiva' ? '' : 'collapsed' }}"
+                        href="/data-aktiva">
+                        <i class="bi bi-clipboard2-data"></i>
+                        <span>Data Aktiva</span>
                     </a>
                 </li>
             </ul>

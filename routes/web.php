@@ -32,3 +32,11 @@ Route::post('/simpan/data-aktiva', [App\Http\Controllers\AktivaController::class
 Route::get('/edit/data-aktiva/{id}', [App\Http\Controllers\AktivaController::class, 'edit'])->name('edit.aktiva');
 Route::post('/update/data-aktiva={id}', [App\Http\Controllers\AktivaController::class, 'update'])->name('update.aktiva');
 Route::post('/hapus/data-aktiva={id}', [App\Http\Controllers\AktivaController::class, 'delete'])->name('delete.aktiva');
+
+// Route Input Aktiva //
+Route::get('/laporan-aktiva', [App\Http\Controllers\LaporanAktivaController::class, 'index'])->name('laporan.aktiva');
+Route::get('/tambah/laporan-aktiva', [App\Http\Controllers\LaporanAktivaController::class, 'tambah'])->name('tambah.laporan.aktiva');
+Route::post('/simpan/laporan-aktiva', [App\Http\Controllers\LaporanAktivaController::class, 'simpan'])->name('simpan.laporan.aktiva');
+Route::get('/edit/laporan-aktiva/{id}', [App\Http\Controllers\LaporanAktivaController::class, 'edit'])->name('edit.laporan.aktiva');
+Route::post('/update/laporan-aktiva={id}', [App\Http\Controllers\LaporanAktivaController::class, 'update'])->name('update.laporan.aktiva');
+Route::post('/hapus/laporan-aktiva={id}', [App\Http\Controllers\LaporanAktivaController::class, 'delete'])->name('delete.laporan.aktiva');
