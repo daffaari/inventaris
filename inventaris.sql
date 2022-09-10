@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2022 at 06:14 PM
+-- Generation Time: Sep 10, 2022 at 06:19 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -44,7 +44,7 @@ INSERT INTO `aktiva` (`id`, `kode`, `nama`, `created_at`, `updated_at`) VALUES
 (2, 'AKT0002', 'Kendaraan Dinas', '2022-09-09 06:16:39', '2022-09-09 06:16:39'),
 (3, 'AKT0003', 'Tanah', '2022-09-09 06:17:23', '2022-09-09 06:17:23'),
 (6, 'AKT0004', 'Adya', '2022-09-09 23:33:08', '2022-09-09 23:33:29'),
-(8, 'AKT0005', 'test', '2022-09-10 02:21:46', '2022-09-10 02:21:46');
+(8, 'AKT0005', 'test 5', '2022-09-10 02:21:46', '2022-09-10 09:19:51');
 
 -- --------------------------------------------------------
 
@@ -84,7 +84,8 @@ INSERT INTO `inventaris` (`id`, `kode`, `nama`, `created_at`, `updated_at`) VALU
 (1, 'INV0001', 'Mesin Kantor', '2022-09-10 08:23:03', '2022-09-10 08:23:03'),
 (2, 'INV0002', 'Perabot Kantor', '2022-09-10 08:23:15', '2022-09-10 08:23:15'),
 (5, 'INV0003', 'Perabot Rumah Dinas', '2022-09-10 09:50:10', '2022-09-10 09:50:10'),
-(6, 'INV0004', 'Alat Kebersihan', '2022-09-10 10:54:18', '2022-09-10 10:54:18');
+(6, 'INV0004', 'Alat Kebersihan', '2022-09-10 10:54:18', '2022-09-10 10:54:18'),
+(8, 'INV0005', 'test 123', '2022-09-10 16:18:38', '2022-09-10 16:18:44');
 
 -- --------------------------------------------------------
 
@@ -237,8 +238,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `email_verified_at`, `password`, 
 -- Indexes for table `aktiva`
 --
 ALTER TABLE `aktiva`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `aktiva_nama_unique` (`nama`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -300,7 +300,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `aktiva`
 --
 ALTER TABLE `aktiva`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -312,7 +312,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `inventaris`
 --
 ALTER TABLE `inventaris`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `laporan_aktiva`
