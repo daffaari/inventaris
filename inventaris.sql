@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2022 at 09:20 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.0.19
+-- Generation Time: Sep 10, 2022 at 04:15 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,10 @@ CREATE TABLE `aktiva` (
 INSERT INTO `aktiva` (`id`, `kode`, `nama`, `created_at`, `updated_at`) VALUES
 (1, 'AKT0001', 'Mobil Dinas', '2022-09-09 06:09:41', '2022-09-09 06:09:41'),
 (2, 'AKT0002', 'Kendaraan Dinas', '2022-09-09 06:16:39', '2022-09-09 06:16:39'),
-(3, 'AKT0003', 'Tanah', '2022-09-09 06:17:23', '2022-09-09 06:17:23');
+(3, 'AKT0003', 'Tanah', '2022-09-09 06:17:23', '2022-09-09 06:17:23'),
+(6, 'AKT0004', 'Adya', '2022-09-09 23:33:08', '2022-09-09 23:33:29'),
+(8, 'AKT0005', 'test', '2022-09-10 02:21:46', '2022-09-10 02:21:46'),
+(9, 'AKT0006', 'test 5', '2022-09-10 02:21:51', '2022-09-10 02:23:41');
 
 -- --------------------------------------------------------
 
@@ -63,20 +66,44 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `inventaris`
+--
+
+CREATE TABLE `inventaris` (
+  `id` int(15) NOT NULL,
+  `kode` varchar(35) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `inventaris`
+--
+
+INSERT INTO `inventaris` (`id`, `kode`, `nama`, `created_at`, `updated_at`) VALUES
+(1, 'INV0001', 'Mesin Kantor', '2022-09-10 08:23:03', '2022-09-10 08:23:03'),
+(2, 'INV0002', 'Perabot Kantor', '2022-09-10 08:23:15', '2022-09-10 08:23:15'),
+(5, 'INV0003', 'Perabot Rumah Dinas', '2022-09-10 09:50:10', '2022-09-10 09:50:10'),
+(6, 'INV0004', 'Alat Kebersihan', '2022-09-10 10:54:18', '2022-09-10 10:54:18');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `laporan_aktiva`
 --
 
 CREATE TABLE `laporan_aktiva` (
   `id` int(15) NOT NULL,
   `aktiva_id` int(5) NOT NULL,
-  `tgl_perolehan` datetime NOT NULL,
-  `harga_perolehan` int(15) NOT NULL,
+  `tgl_perolehan` date NOT NULL,
+  `harga_perolehan` float NOT NULL,
   `umur_teknis` int(5) NOT NULL,
   `penghapusan` int(3) NOT NULL,
   `ak_penyusutan` int(15) NOT NULL,
   `penyusutan_bln` int(15) NOT NULL,
   `jml_penyu_bln` int(15) NOT NULL,
-  `nilai_buku` int(15) NOT NULL,
+  `nilai_buku` float NOT NULL,
   `keterangan` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
@@ -87,7 +114,42 @@ CREATE TABLE `laporan_aktiva` (
 --
 
 INSERT INTO `laporan_aktiva` (`id`, `aktiva_id`, `tgl_perolehan`, `harga_perolehan`, `umur_teknis`, `penghapusan`, `ak_penyusutan`, `penyusutan_bln`, `jml_penyu_bln`, `nilai_buku`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, 1, '2022-09-09 20:55:55', 5000, 5, 3, 555, 3, 55555, 17000, 'TEST', '2022-09-09 20:55:55', '2022-09-09 20:55:55');
+(1, 1, '2022-09-09', 5000, 5, 3, 555, 3, 55555, 17000, 'TEST', '2022-09-09 20:55:55', '2022-09-09 20:55:55'),
+(2, 3, '2022-09-10', 6000000000, 0, 0, 0, 0, 0, 6000000000, 'TESTING DATA', '2022-09-10 07:11:00', '2022-09-10 07:51:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `laporan_inventaris`
+--
+
+CREATE TABLE `laporan_inventaris` (
+  `id` int(15) NOT NULL,
+  `inventaris_id` int(15) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `lokasi` text NOT NULL,
+  `kelompok` text NOT NULL,
+  `tgl_perolehan` date NOT NULL,
+  `banyak` int(5) NOT NULL,
+  `harga_satuan` int(35) NOT NULL,
+  `jml_hrg_perolehan` int(35) NOT NULL,
+  `umur` text NOT NULL,
+  `penghapusan` int(10) NOT NULL,
+  `akum_penyusutan` int(35) NOT NULL,
+  `penyusutan_bln` int(15) NOT NULL,
+  `jml_penyusutan` int(35) NOT NULL,
+  `nilai_buku` int(35) NOT NULL,
+  `keterangan` text NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `laporan_inventaris`
+--
+
+INSERT INTO `laporan_inventaris` (`id`, `inventaris_id`, `nama`, `lokasi`, `kelompok`, `tgl_perolehan`, `banyak`, `harga_satuan`, `jml_hrg_perolehan`, `umur`, `penghapusan`, `akum_penyusutan`, `penyusutan_bln`, `jml_penyusutan`, `nilai_buku`, `keterangan`, `created_at`, `updated_at`) VALUES
+(2, 2, 'Kursi JT', 'Ruang Dirum', 'I', '2008-01-02', 1, 4000000, 4000000, '4 Tahun', 25, 3999999, 0, 3999999, 1, 'Rusak', '2022-09-10 13:52:37', '2022-09-10 14:12:48');
 
 -- --------------------------------------------------------
 
@@ -185,11 +247,22 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `inventaris`
+--
+ALTER TABLE `inventaris`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `laporan_aktiva`
 --
 ALTER TABLE `laporan_aktiva`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `aktiva_id` (`aktiva_id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `laporan_inventaris`
+--
+ALTER TABLE `laporan_inventaris`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -226,7 +299,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `aktiva`
 --
 ALTER TABLE `aktiva`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -235,10 +308,22 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `inventaris`
+--
+ALTER TABLE `inventaris`
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `laporan_aktiva`
 --
 ALTER TABLE `laporan_aktiva`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `laporan_inventaris`
+--
+ALTER TABLE `laporan_inventaris`
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
