@@ -6,7 +6,7 @@
         <section class="section">
             <div class="row">
 
-                <div class="col-lg">
+                <div class="col-lg-12">
 
                     <div class="card">
                         <div class="float-right">
@@ -48,7 +48,7 @@
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title">Data Aktiva</h5>
+                            <h5 class="card-title">Data Inventaris</h5>
 
                             <!-- Table with stripped rows -->
                             <a href="#">
@@ -61,19 +61,18 @@
                                         <th scope="col" class="text-center">#</th>
                                         <th scope="col" class="text-center">Kode</th>
                                         <th scope="col" class="text-center">Nama</th>
-                                        <th scope="col" class="text-center" width="15%">*</th>
+                                        <th scope="col" class="text-center"width="15%">*</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (!empty($aktiva))
-                                        @foreach ($aktiva as $data)
+                                    @if (!empty($inventaris))
+                                        @foreach ($inventaris as $data)
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td class="text-center">{{ $data->kode }}</td>
                                                 <td class="text-center">{{ $data->nama }}</td>
                                                 <td class="text-center">
-                                                    <form action="{{ route('delete.aktiva', ['id' => $data->id]) }}"
-                                                        method="POST">
+                                                    <form action="#" method="POST">
                                                         @csrf
                                                         <a href="#">
                                                             <button type="button" class="btn btn-warning"
@@ -110,12 +109,12 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Aktiva</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Inventaris</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('simpan.aktiva') }}" method="POST">
+                                    <form action="{{ route('simpan.inventaris') }}" method="POST">
                                         @csrf
                                         <div class="row mb-3">
                                             <label for="name" class="col-sm-2 col-form-label">Nama</label>
@@ -140,12 +139,12 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="editModal">Edit Data Aktiva</h5>
+                                    <h5 class="modal-title" id="editModal">Edit Data Inventaris</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('update.aktiva', ['id' => $data->id]) }}" method="POST">
+                                    <form action="#" method="POST">
                                         @csrf
                                         <div class="row mb-3">
                                             <label for="name" class="col-sm-2 col-form-label">Nama</label>

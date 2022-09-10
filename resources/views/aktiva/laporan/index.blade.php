@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    <title>Laporan Aktiva</title>
     <main id="main" class="main">
         <section class="section">
             <div class="row justify-content-center">
@@ -50,11 +51,10 @@
                             <h5 class="card-title">Laporan Data Aktiva</h5>
 
                             <!-- Table with stripped rows -->
-                            <a href="#">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"><i class="ri-add-box-line mb-3"></i></button>
+                            <a href="{{ route('tambah.laporan.aktiva') }}">
+                                <button type="button" class="btn btn-success"><i class="ri-add-box-line mb-3"></i></button>
                             </a>
-                            <table class="table table-striped table-bordered" id="data">
+                            <table class="table table-striped table-bordered table-responsive" id="data">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="text-center">#</th>
@@ -62,37 +62,41 @@
                                         <th scope="col" class="text-center">Tanggal Perolehan</th>
                                         <th scope="col" class="text-center">Harga Perolehan</th>
                                         <th scope="col" class="text-center">Umur Teknis</th>
-                                        <th scope="col" class="text-center">Penghapusan</th>
+                                        <th scope="col" class="text-center" width="10%">Penghapusan</th>
                                         <th scope="col" class="text-center">Akumulasi Penyusutan</th>
                                         <th scope="col" class="text-center">Penyusutan (dalam bulan)</th>
                                         <th scope="col" class="text-center">Jumlah Penyusutan</th>
                                         <th scope="col" class="text-center">Nilai Buku</th>
                                         <th scope="col" class="text-center">Keterangan</th>
-                                        <th scope="col" class="text-center"width=10%">*</th>
+                                        <th scope="col" class="text-center">*</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if (!empty($aktiva))
                                         @foreach ($aktiva as $data)
                                             <tr>
-                                                <td class="text-center">{{ $loop->iteration }}</td>
-                                                <td class="text-center">{{ $data->aktiva_id }}</td>
+                                                <td class="text-center">
+                                                    {{ $loop->iteration }}</td>
+                                                <td class="text-center">
+                                                    {{ \App\Models\Aktiva::find($data->aktiva_id)['nama'] }}
+                                                </td>
                                                 <td class="text-center">{{ $data->tgl_perolehan }}</td>
-                                                <td class="text-center">{{ $data->harga_perolehan }}</td>
-                                                <td class="text-center">{{ $data->umur_teknis }}</td>
-                                                <td class="text-center">{{ $data->penghapusan }}</td>
-                                                <td class="text-center">{{ $data->ak_penyusutan }}</td>
-                                                <td class="text-center">{{ $data->penyusutan_bln }}</td>
-                                                <td class="text-center">{{ $data->jml_penyu_bln }}</td>
-                                                <td class="text-center">{{ $data->nilai_buku }}</td>
+                                                <td class="text-center">Rp. {{ number_format($data->harga_perolehan) }}
+                                                </td>
+                                                <td class="text-center">{{ $data->umur_teknis }} bln</td>
+                                                <td class="text-center">{{ $data->penghapusan }}%</td>
+                                                <td class="text-center">Rp. {{ number_format($data->ak_penyusutan) }}</td>
+                                                <td class="text-center">Rp. {{ number_format($data->penyusutan_bln) }}</td>
+                                                <td class="text-center">Rp. {{ number_format($data->jml_penyu_bln) }}</td>
+                                                <td class="text-center">Rp. {{ number_format($data->nilai_buku) }}</td>
                                                 <td class="text-center">{{ $data->keterangan }}</td>
                                                 <td class="text-center">
-                                                    <form action="#" method="POST">
+                                                    <form
+                                                        action="{{ route('delete.laporan.aktiva', ['id' => $data->id]) }}"
+                                                        method="POST">
                                                         @csrf
-                                                        <a href="#">
-                                                            <button type="button" class="btn btn-warning"
-                                                                data-bs-toggle="modal" data-bs-target="#editModal"
-                                                                data-target-id="{{ $data->nama }}">
+                                                        <a href="{{ route('edit.laporan.aktiva', ['id' => $data->id]) }}">
+                                                            <button type="button" class="btn btn-warning">
                                                                 <i class="ri-add-box-line mb-3"></i></button>
                                                         </a>
 
@@ -132,9 +136,82 @@
                                     <form action="{{ route('simpan.aktiva') }}" method="POST">
                                         @csrf
                                         <div class="row mb-3">
-                                            <label for="name" class="col-sm-2 col-form-label">Nama</label>
+                                            <label class="col-sm-2 col-form-label">Jenis Aktiva</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nama">
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>--Pilih Jenis Aktiva--</option>
+                                                    @foreach ($dataAktiva as $data)
+                                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="tgl_perolehan" class="col-sm-2 col-form-label">Tanggal
+                                                Perolehan</label>
+                                            <div class="col-sm-10">
+                                                <input type="date" class="form-control" name="tgl_perolehan">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="harga_perolehan" class="col-sm-2 col-form-label">Harga
+                                                Perolehan</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" name="harga_perolehan">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="umur_teknis" class="col-sm-2 col-form-label">Umur Teknis</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" name="umur_teknis">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="penghapusan" class="col-sm-2 col-form-label">Penghapusan</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" name="penghapusan">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mb-3">
+                                            <label for="ak_penyusutan" class="col-sm-2 col-form-label">Akumulasi
+                                                Penyusutan</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" name="ak_penyusutan">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="penyusutan_bln" class="col-sm-2 col-form-label">
+                                                Penyusutan (bln berjalan)</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" name="penyusutan_bln">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="jml_penyu_bln" class="col-sm-2 col-form-label">Jumlah
+                                                Penyusutan</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" name="jml_penyu_bln">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="nilai_buku" class="col-sm-2 col-form-label">Nilai Buku</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" name="nilai_buku">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="keterangan">
                                             </div>
                                         </div>
 
@@ -142,7 +219,7 @@
                                             <button type="submit" class="btn btn-primary">Submit</button>
 
                                         </div>
-                                    </form><!-- End Horizontal Form -->
+                                    </form>
 
                                 </div>
                             </div>
@@ -150,7 +227,8 @@
                     </div>
 
                     <!-- Edit Modal -->
-                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
+                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal"
+                        aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">

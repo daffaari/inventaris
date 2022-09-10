@@ -30,20 +30,12 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('template') }}/assets/css/style.css" rel="stylesheet">
-
-    <!-- =======================================================
-  * Template Name: NiceAdmin - v2.3.1
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
 
     <main>
         <div class="container">
-
             <section
                 class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="container">
@@ -56,44 +48,44 @@
 
                                 </a>
                             </div><!-- End Logo -->
-                            <div class="float-end">
-                                <script>
-                                    @if (Session::has('message'))
-                                        toastr.options = {
-                                            "closeButton": true,
-                                            "progressBar": true
-                                        }
-                                        toastr.success("{{ session('message') }}");
-                                    @endif
 
-                                    @if (Session::has('error'))
-                                        toastr.options = {
-                                            "closeButton": true,
-                                            "progressBar": true
-                                        }
-                                        toastr.error("{{ session('error') }}");
-                                    @endif
-
-                                    @if (Session::has('info'))
-                                        toastr.options = {
-                                            "closeButton": true,
-                                            "progressBar": true
-                                        }
-                                        toastr.info("{{ session('info') }}");
-                                    @endif
-
-                                    @if (Session::has('warning'))
-                                        toastr.options = {
-                                            "closeButton": true,
-                                            "progressBar": true
-                                        }
-                                        toastr.warning("{{ session('warning') }}");
-                                    @endif
-                                </script>
-                            </div>
 
                             <div class="card mb-3">
+                                <div class="float-end">
+                                    <script>
+                                        @if (Session::has('message'))
+                                            toastr.options = {
+                                                "closeButton": true,
+                                                "progressBar": true
+                                            }
+                                            toastr.success("{{ session('message') }}");
+                                        @endif
 
+                                        @if (Session::has('error'))
+                                            toastr.options = {
+                                                "closeButton": true,
+                                                "progressBar": true
+                                            }
+                                            toastr.error("{{ session('error') }}");
+                                        @endif
+
+                                        @if (Session::has('info'))
+                                            toastr.options = {
+                                                "closeButton": true,
+                                                "progressBar": true
+                                            }
+                                            toastr.info("{{ session('info') }}");
+                                        @endif
+
+                                        @if (Session::has('warning'))
+                                            toastr.options = {
+                                                "closeButton": true,
+                                                "progressBar": true
+                                            }
+                                            toastr.warning("{{ session('warning') }}");
+                                        @endif
+                                    </script>
+                                </div>
                                 <div class="card-body">
 
                                     <div class="pt-4 pb-2">
@@ -136,21 +128,12 @@
         </div>
     </main><!-- End #main -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
-
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/chart.js/chart.min.js"></script>
-    <script src="assets/vendor/echarts/echarts.min.js"></script>
-    <script src="assets/vendor/quill/quill.min.js"></script>
-    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="{{ asset('template') }}/assets/js/main.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 </body>
 

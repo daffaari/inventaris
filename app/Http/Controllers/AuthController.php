@@ -14,12 +14,12 @@ class AuthController extends Controller
             'password' => $request->password,
         ])) {
 
-            return redirect('/home');
+            return redirect('/home')->with('success', 'Berhasil Login');
         }
 
         //$users = DB::table('users')->get();
         //var_dump($users);
-        return redirect('/');
+        return redirect('/')->with('error', 'Username atau Password Salah');
     }
 
     public function logout()

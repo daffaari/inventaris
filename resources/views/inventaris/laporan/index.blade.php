@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <title>Data Aktiva</title>
+    <title>Data Inventaris</title>
     <main id="main" class="main">
         <section class="section">
             <div class="row">
@@ -48,37 +48,65 @@
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title">Data Aktiva</h5>
+                            <h5 class="card-title">Laporan Inventaris</h5>
 
                             <!-- Table with stripped rows -->
-                            <a href="#">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"><i class="ri-add-box-line mb-3"></i></button>
+                            <a href="{{ route('tambah.laporan.inventaris') }}">
+                                <button type="button" class="btn btn-success"><i class="ri-add-box-line mb-3"></i></button>
                             </a>
-                            <table class="table table-striped table-bordered w-100" id="data">
+                            <table class="table table-striped table-bordered table-responsive" id="data">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="text-center">#</th>
-                                        <th scope="col" class="text-center">Kode</th>
+                                        <th scope="col" class="text-center">Jenis</th>
                                         <th scope="col" class="text-center">Nama</th>
-                                        <th scope="col" class="text-center" width="15%">*</th>
+                                        <th scope="col" class="text-center">Lokasi</th>
+                                        <th scope="col" class="text-center">Kelompok</th>
+                                        <th scope="col" class="text-center">Tgl Peroleh</th>
+                                        <th scope="col" class="text-center">Banyak</th>
+                                        <th scope="col" class="text-center">Harga Satuan</th>
+                                        <th scope="col" class="text-center">Jml Harga Peroleh</th>
+                                        <th scope="col" class="text-center">Umur</th>
+                                        <th scope="col" class="text-center">Penghapusan</th>
+                                        <th scope="col" class="text-center">Akumulasi Penyusutan</th>
+                                        <th scope="col" class="text-center">Penyusutan (dlm bln berjalan)</th>
+                                        <th scope="col" class="text-center">Jml Penyusutan (s/d bln berjalan)</th>
+                                        <th scope="col" class="text-center">Nilai Buku</th>
+                                        <th scope="col" class="text-center">Ket</th>
+                                        <th scope="col" class="text-center"width="15%">*</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (!empty($aktiva))
-                                        @foreach ($aktiva as $data)
+                                    @if (!empty($lapInven))
+                                        @foreach ($lapInven as $data)
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                                <td class="text-center">{{ $data->kode }}</td>
-                                                <td class="text-center">{{ $data->nama }}</td>
                                                 <td class="text-center">
-                                                    <form action="{{ route('delete.aktiva', ['id' => $data->id]) }}"
+                                                    {{ \App\Models\Inventaris::find($data->inventaris_id)['nama'] }}</td>
+                                                <td class="text-center">{{ $data->nama }}</td>
+                                                <td class="text-center">{{ $data->lokasi }}</td>
+                                                <td class="text-center">{{ $data->kelompok }}</td>
+                                                <td class="text-center">{{ $data->tgl_perolehan }}</td>
+                                                <td class="text-center">{{ $data->banyak }}</td>
+                                                <td class="text-center">Rp. {{ number_format($data->harga_satuan) }}</td>
+                                                <td class="text-center">Rp. {{ number_format($data->jml_hrg_perolehan) }}
+                                                </td>
+                                                <td class="text-center">{{ $data->umur }}</td>
+                                                <td class="text-center">{{ $data->penghapusan }}%</td>
+                                                <td class="text-center">Rp. {{ number_format($data->akum_penyusutan) }}
+                                                </td>
+                                                <td class="text-center">{{ $data->penyusutan_bln }}</td>
+                                                <td class="text-center">Rp. {{ number_format($data->jml_penyusutan) }}</td>
+                                                <td class="text-center">{{ $data->nilai_buku }}</td>
+                                                <td class="text-center">{{ $data->keterangan }}</td>
+                                                <td class="text-center">
+                                                    <form
+                                                        action="{{ route('delete.laporan.inventaris', ['id' => $data->id]) }}"
                                                         method="POST">
                                                         @csrf
-                                                        <a href="#">
-                                                            <button type="button" class="btn btn-warning"
-                                                                data-bs-toggle="modal" data-bs-target="#editModal"
-                                                                data-target-id="{{ $data->nama }}">
+                                                        <a
+                                                            href="{{ route('edit.laporan.inventaris', ['id' => $data->id]) }}">
+                                                            <button type="button" class="btn btn-warning">
                                                                 <i class="ri-add-box-line mb-3"></i></button>
                                                         </a>
 
@@ -110,15 +138,15 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Aktiva</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Inventaris</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('simpan.aktiva') }}" method="POST">
+                                    <form action="{{ route('simpan.inventaris') }}" method="POST">
                                         @csrf
                                         <div class="row mb-3">
-                                            <label for="name" class="col-sm-2 col-form-label">Nama</label>
+                                            <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" name="nama">
                                             </div>
@@ -136,21 +164,23 @@
                     </div>
 
                     <!-- Edit Modal -->
-                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
+                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal"
+                        aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="editModal">Edit Data Aktiva</h5>
+                                    <h5 class="modal-title" id="editModal">Edit Data Inventaris</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('update.aktiva', ['id' => $data->id]) }}" method="POST">
+                                    <form action="#" method="POST">
                                         @csrf
                                         <div class="row mb-3">
                                             <label for="name" class="col-sm-2 col-form-label">Nama</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nama" id="pass_id">
+                                                <input type="text" class="form-control" name="nama"
+                                                    id="pass_id">
                                             </div>
                                         </div>
 

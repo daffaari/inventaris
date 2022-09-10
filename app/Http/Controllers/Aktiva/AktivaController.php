@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Aktiva;
 
+use App\Http\Controllers\Controller;
 use App\Models\Aktiva;
 use Illuminate\Http\Request;
 
@@ -77,7 +78,8 @@ class AktivaController extends Controller
     public function update($id, Request $request)
     {
         $data = Aktiva::find($id);
-        $data->update($request->all());
+        $data->nama = $request->nama;
+        $data->save();
 
         return redirect('/data-aktiva')->with('info', 'Sukses Mengupdate Data');
     }
