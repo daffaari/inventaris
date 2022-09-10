@@ -21,7 +21,9 @@
                                             name="inventaris_id">
                                             <option selected>--Pilih Jenis Inventaris--</option>
                                             @foreach ($dataInventaris as $a)
-                                                <option value="{{ $data->inventaris_id }}">{{ $a->nama }} -
+                                                <option value="{{ $a->id }}"
+                                                    {{ $a->id == $data->inventaris_id ? 'selected' : '' }}>
+                                                    {{ $a->nama }} -
                                                     ({{ $a->kode }})
                                                 </option>
                                             @endforeach

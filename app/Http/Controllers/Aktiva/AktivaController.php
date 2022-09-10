@@ -75,10 +75,10 @@ class AktivaController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function update($id, Request $request)
+    public function update()
     {
-        $data = Aktiva::find($id);
-        $data->nama = $request->nama;
+        $data = Aktiva::find($_POST['data_id']);
+        $data->nama = $_POST['nama_edit'];
         $data->save();
 
         return redirect('/data-aktiva')->with('info', 'Sukses Mengupdate Data');
