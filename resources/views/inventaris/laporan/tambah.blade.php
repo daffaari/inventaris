@@ -20,7 +20,7 @@
                                         <select class="form-select" aria-label="Default select example"
                                             name="inventaris_id">
                                             <option selected>--Pilih Jenis Inventaris--</option>
-                                            @foreach ($inv as $data)
+                                            @foreach ($inventaris as $data)
                                                 <option value="{{ $data->id }}">{{ $data->nama }} -
                                                     ({{ $data->kode }})
                                                 </option>

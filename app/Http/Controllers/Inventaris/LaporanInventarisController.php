@@ -7,6 +7,8 @@ use App\Models\Inventaris;
 use App\Models\LaporanInventaris;
 use Illuminate\Http\Request;
 
+use DB;
+
 class LaporanInventarisController extends Controller
 {
     public function index()
@@ -24,8 +26,20 @@ class LaporanInventarisController extends Controller
 
     public function tambah()
     {
+        $inventaris = DB::table('inventaris')
+            ->leftJoin('laporan_inventaris', 'laporan_inventaris.inventaris_id', '=', 'inventaris.id')
+            ->select('inventaris.*', 'laporan_inventaris.inventaris_id as id_inventaris')
+            ->get();
+
         $inv = Inventaris::all();
-        return view('inventaris.laporan.tambah', ['inv' => $inv]);
+        return view(
+            'inventaris.laporan.tambah',
+            [
+                'inv' => $inv,
+                'inventaris' => $inventaris
+
+            ]
+        );
     }
 
     public function simpan(Request $request)

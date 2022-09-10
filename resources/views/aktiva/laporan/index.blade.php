@@ -4,9 +4,9 @@
     <title>Laporan Aktiva</title>
     <main id="main" class="main">
         <section class="section">
-            <div class="row justify-content-center">
+            <div class="row">
 
-                <div class="col-md-12">
+                <div class="col-lg">
 
                     <div class="card">
                         <div class="float-right">
@@ -59,6 +59,7 @@
                                     <tr>
                                         <th scope="col" class="text-center">#</th>
                                         <th scope="col" class="text-center">Jenis Aktiva</th>
+                                        <th scope="col" class="text-center">Nama</th>
                                         <th scope="col" class="text-center">Tanggal Perolehan</th>
                                         <th scope="col" class="text-center">Harga Perolehan</th>
                                         <th scope="col" class="text-center">Umur Teknis</th>
@@ -80,6 +81,7 @@
                                                 <td class="text-center">
                                                     {{ \App\Models\Aktiva::find($data->aktiva_id)['nama'] }}
                                                 </td>
+                                                <td class="text-center">{{ $data->nama }}</td>
                                                 <td class="text-center">{{ $data->tgl_perolehan }}</td>
                                                 <td class="text-center">Rp. {{ number_format($data->harga_perolehan) }}
                                                 </td>
@@ -90,19 +92,20 @@
                                                 <td class="text-center">Rp. {{ number_format($data->jml_penyu_bln) }}</td>
                                                 <td class="text-center">Rp. {{ number_format($data->nilai_buku) }}</td>
                                                 <td class="text-center">{{ $data->keterangan }}</td>
-                                                <td class="text-center">
-                                                    <form
+                                                <td class="text-center d-flex mr-3">
+                                                    <a href="{{ route('edit.laporan.aktiva', ['id' => $data->id]) }}">
+                                                        <button type="button" class="btn btn-warning"> Edit
+                                                            <i class="ri-add-box-line mb-3"></i>
+                                                        </button>
+                                                    </a>
+                                                    <form class="ml-2"
                                                         action="{{ route('delete.laporan.aktiva', ['id' => $data->id]) }}"
                                                         method="POST">
                                                         @csrf
-                                                        <a href="{{ route('edit.laporan.aktiva', ['id' => $data->id]) }}">
-                                                            <button type="button" class="btn btn-warning">
-                                                                <i class="ri-add-box-line mb-3"></i></button>
-                                                        </a>
-
                                                         <a href="#">
-                                                            <button type="submit" class="btn btn-danger"><i
-                                                                    class="ri-delete-bin-2-line"></i></button>
+                                                            <button type="submit" class="btn btn-danger"> Hapus
+                                                                <i class="ri-delete-bin-2-line"></i>
+                                                            </button>
                                                         </a>
                                                     </form>
 

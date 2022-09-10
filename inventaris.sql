@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2022 at 04:15 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Generation Time: Sep 10, 2022 at 06:14 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,12 +40,11 @@ CREATE TABLE `aktiva` (
 --
 
 INSERT INTO `aktiva` (`id`, `kode`, `nama`, `created_at`, `updated_at`) VALUES
-(1, 'AKT0001', 'Mobil Dinas', '2022-09-09 06:09:41', '2022-09-09 06:09:41'),
+(1, 'AKT0001', 'Rumah Dinas', '2022-09-09 06:09:41', '2022-09-10 09:01:31'),
 (2, 'AKT0002', 'Kendaraan Dinas', '2022-09-09 06:16:39', '2022-09-09 06:16:39'),
 (3, 'AKT0003', 'Tanah', '2022-09-09 06:17:23', '2022-09-09 06:17:23'),
 (6, 'AKT0004', 'Adya', '2022-09-09 23:33:08', '2022-09-09 23:33:29'),
-(8, 'AKT0005', 'test', '2022-09-10 02:21:46', '2022-09-10 02:21:46'),
-(9, 'AKT0006', 'test 5', '2022-09-10 02:21:51', '2022-09-10 02:23:41');
+(8, 'AKT0005', 'test', '2022-09-10 02:21:46', '2022-09-10 02:21:46');
 
 -- --------------------------------------------------------
 
@@ -96,6 +95,7 @@ INSERT INTO `inventaris` (`id`, `kode`, `nama`, `created_at`, `updated_at`) VALU
 CREATE TABLE `laporan_aktiva` (
   `id` int(15) NOT NULL,
   `aktiva_id` int(5) NOT NULL,
+  `nama` varchar(35) NOT NULL,
   `tgl_perolehan` date NOT NULL,
   `harga_perolehan` float NOT NULL,
   `umur_teknis` int(5) NOT NULL,
@@ -113,9 +113,9 @@ CREATE TABLE `laporan_aktiva` (
 -- Dumping data for table `laporan_aktiva`
 --
 
-INSERT INTO `laporan_aktiva` (`id`, `aktiva_id`, `tgl_perolehan`, `harga_perolehan`, `umur_teknis`, `penghapusan`, `ak_penyusutan`, `penyusutan_bln`, `jml_penyu_bln`, `nilai_buku`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, 1, '2022-09-09', 5000, 5, 3, 555, 3, 55555, 17000, 'TEST', '2022-09-09 20:55:55', '2022-09-09 20:55:55'),
-(2, 3, '2022-09-10', 6000000000, 0, 0, 0, 0, 0, 6000000000, 'TESTING DATA', '2022-09-10 07:11:00', '2022-09-10 07:51:43');
+INSERT INTO `laporan_aktiva` (`id`, `aktiva_id`, `nama`, `tgl_perolehan`, `harga_perolehan`, `umur_teknis`, `penghapusan`, `ak_penyusutan`, `penyusutan_bln`, `jml_penyu_bln`, `nilai_buku`, `keterangan`, `created_at`, `updated_at`) VALUES
+(5, 2, 'Lexus A30', '2022-09-10', 750000000, 1, 0, 0, 0, 0, 750000000, 'Mobil Dinas Baru', '2022-09-10 15:58:19', '2022-09-10 15:58:19'),
+(6, 6, 'TEST', '2022-09-10', 100000000, 5, 5, 100000, 0, 0, 1000000, 'TEST', '2022-09-10 16:02:31', '2022-09-10 16:02:31');
 
 -- --------------------------------------------------------
 
@@ -149,7 +149,8 @@ CREATE TABLE `laporan_inventaris` (
 --
 
 INSERT INTO `laporan_inventaris` (`id`, `inventaris_id`, `nama`, `lokasi`, `kelompok`, `tgl_perolehan`, `banyak`, `harga_satuan`, `jml_hrg_perolehan`, `umur`, `penghapusan`, `akum_penyusutan`, `penyusutan_bln`, `jml_penyusutan`, `nilai_buku`, `keterangan`, `created_at`, `updated_at`) VALUES
-(2, 2, 'Kursi JT', 'Ruang Dirum', 'I', '2008-01-02', 1, 4000000, 4000000, '4 Tahun', 25, 3999999, 0, 3999999, 1, 'Rusak', '2022-09-10 13:52:37', '2022-09-10 14:12:48');
+(2, 2, 'Kursi JT', 'Ruang Dirum', 'I', '2008-01-02', 1, 4000000, 4000000, '4 Tahun', 25, 3999999, 0, 3999999, 1, 'Rusak', '2022-09-10 13:52:37', '2022-09-10 14:12:48'),
+(3, 2, 'Piring', 'Dapur', '1', '2022-09-10', 50, 13000, 13000, '5', 0, 0, 0, 0, 13000, 'Piring di dapur kantor', '2022-09-10 16:05:41', '2022-09-10 16:05:41');
 
 -- --------------------------------------------------------
 
@@ -311,19 +312,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `inventaris`
 --
 ALTER TABLE `inventaris`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `laporan_aktiva`
 --
 ALTER TABLE `laporan_aktiva`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `laporan_inventaris`
 --
 ALTER TABLE `laporan_inventaris`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`

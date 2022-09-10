@@ -60,10 +60,11 @@ class InventarisController extends Controller
         return redirect('/data-inventaris')->with('message', 'Sukses Menyimpan Data');
     }
 
-    public function update($id, Request $request)
+    public function update()
     {
-        $data = Inventaris::find($id);
-        $data->update($request->all());
+        $data = Inventaris::find($_POST['data_id']);
+        $data->nama = $_POST['nama_edit'];
+        $data->save();
 
         return redirect('/data-inventaris')->with('info', 'Sukses Mengupdate Data');
     }

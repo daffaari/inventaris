@@ -71,19 +71,26 @@
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td class="text-center">{{ $data->kode }}</td>
                                                 <td class="text-center">{{ $data->nama }}</td>
-                                                <td class="text-center">
-                                                    <form action="#" method="POST">
+                                                <td class="text-center d-flex">
+                                                    <a href="#">
+                                                        <button type="button" class="btn btn-warning btn-edit"
+                                                            data-id="{{ $data->id }}" data-nama="{{ $data->nama }}">
+                                                            Edit
+                                                            <i class="ri-edit-box-line"></i>
+                                                        </button>
+                                                    </a>
+
+                                                    <form class="ml-2"
+                                                        action="{{ route('delete.inventaris', ['id' => $data->id]) }}"
+                                                        method="POST">
                                                         @csrf
-                                                        <a href="#">
-                                                            <button type="button" class="btn btn-warning"
-                                                                data-bs-toggle="modal" data-bs-target="#editModal"
-                                                                data-target-id="{{ $data->nama }}">
-                                                                <i class="ri-add-box-line mb-3"></i></button>
-                                                        </a>
+
 
                                                         <a href="#">
-                                                            <button type="submit" class="btn btn-danger"><i
-                                                                    class="ri-delete-bin-2-line"></i></button>
+                                                            <button type="submit" class="btn btn-danger">Hapus
+                                                                <i class="ri-delete-bin-2-line"> </i>
+
+                                                            </button>
                                                         </a>
                                                     </form>
 
@@ -144,12 +151,13 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="#" method="POST">
+                                    <form action="{{ route('update.inventaris') }}" method="POST">
                                         @csrf
                                         <div class="row mb-3">
-                                            <label for="name" class="col-sm-2 col-form-label">Nama</label>
+                                            <input type="hidden" name="data_id">
+                                            <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nama" id="pass_id">
+                                                <input type="text" class="form-control" name="nama_edit">
                                             </div>
                                         </div>
 
@@ -171,11 +179,19 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 <script>
     $(document).ready(function() {
-        $("#editModal").on("show.bs.modal", function(e) {
-            var nama = $(e.relatedTarget).data('target-id');
-            $('#pass_id').val(nama);
-        });
+        // $("#editModal").on("show.bs.modal", function(e) {
+        //     var nama = $(e.relatedTarget).data('target-id');
+        //     $('#pass_id').val(nama);
+        // });
+        $('.btn-edit').click(function() {
+            var data_id = $(this).attr('data-id');
+            var data_nama = $(this).attr('data-nama');
+            $('[name="data_id"]').val(data_id)
+            $('[name="nama_edit"]').val(data_nama)
+            $('#editModal').modal('show');
+        })
     });
 </script>

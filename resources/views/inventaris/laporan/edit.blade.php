@@ -165,11 +165,11 @@
                                     <span class="text-danger">{{ $errors->first('keterangan') }}</span>
                                 </div>
 
-                                <div class="text-center">
+                                <div class="text-center mr-3">
                                     <a href="{{ route('laporan.inventaris') }}"> <button type="button"
                                             class="btn btn-danger">Kembali</button>
                                     </a>
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-success">Update</button>
 
                                 </div>
                             </form>

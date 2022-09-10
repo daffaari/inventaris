@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    <title>Laporan Aktiva</title>
     <main id="main" class="main">
         <section class="section">
             <div class="row">
@@ -18,13 +19,24 @@
                                     <div class="col-sm-10">
                                         <select class="form-select" aria-label="Default select example" name="aktiva_id">
                                             <option selected>--Pilih Jenis Aktiva--</option>
-                                            @foreach ($dataAktiva as $data)
-                                                <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                            @foreach ($aktiva as $data)
+                                                <option value="{{ $data->id }}">{{ $data->nama }} -
+                                                    ({{ $data->kode }})</option>
                                             @endforeach
                                         </select>
                                         <span class="text-danger">{{ $errors->first('aktiva_id') }}</span>
                                     </div>
                                 </div>
+
+                                <div class="row mb-3">
+                                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="nama"
+                                            value="{{ old('nama') }}">
+                                    </div>
+                                    <span class="text-danger">{{ $errors->first('nama') }}</span>
+                                </div>
+
                                 <div class="row mb-3">
                                     <label for="tgl_perolehan" class="col-sm-2 col-form-label">Tanggal
                                         Perolehan</label>

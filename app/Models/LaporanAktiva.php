@@ -12,6 +12,7 @@ class LaporanAktiva extends Model
     protected $table = 'laporan_aktiva';
     protected $fillable = [
         'aktiva_id',
+        'nama',
         'tgl_perolehan',
         'harga_perolehan',
         'umur_teknis',

@@ -71,18 +71,28 @@
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td class="text-center">{{ $data->kode }}</td>
                                                 <td class="text-center">{{ $data->nama }}</td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-warning btn-edit" data-id="{{ $data->id }}"
-                                                        data-nama="{{ $data->nama }}">
-                                                        Edit <i class="ri-add-box-line mb-3"></i></button>
+                                                <td class="text-center d-flex">
+                                                    <a href="#">
+                                                        <button type="button" class="btn btn-warning btn-edit"
+                                                            data-id="{{ $data->id }}" data-nama="{{ $data->nama }}">
+                                                            Edit <i class="ri-edit-box-line"></i>
+                                                        </button>
+                                                    </a>
+
 
                                                     <form action="{{ route('delete.aktiva', ['id' => $data->id]) }}"
                                                         method="POST">
                                                         @csrf
+
+
+
                                                         <a href="#">
-                                                            <button type="submit" class="btn btn-danger"><i
-                                                                    class="ri-delete-bin-2-line"></i></button>
+                                                            <button type="submit" class="btn btn-danger ml-2">Hapus <i
+                                                                    class="ri-delete-bin-2-line"></i>
+                                                            </button>
                                                         </a>
+
+
                                                     </form>
 
                                                 </td>

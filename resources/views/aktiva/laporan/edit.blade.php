@@ -20,8 +20,10 @@
                                         <select class="form-select" aria-label="Default select example" name="aktiva_id">
                                             <option selected value="">--Pilih Jenis Aktiva--</option>
                                             @foreach ($dataAktiva as $a)
-                                                <option value="{{ $data->aktiva_id }}" selected="{{ $data->aktiva_id }}">
-                                                    {{ $a->nama }}</option>
+                                                <option value="{{ $a->id }}"
+                                                    {{ $a->id == $data->aktiva_id ? 'selected' : '' }}>
+                                                    {{ $a->nama }} - ({{ $a->kode }})
+                                                </option>
                                             @endforeach
                                         </select>
                                         <span class="text-danger">{{ $errors->first('aktiva_id') }}</span>
@@ -114,11 +116,11 @@
                                     <span class="text-danger">{{ $errors->first('keterangan') }}</span>
                                 </div>
 
-                                <div class="text-center">
+                                <div class="text-center mr-3">
                                     <a href="{{ route('laporan.aktiva') }}">
                                         <button type="button" class="btn btn-danger">Kembali</button>
                                     </a>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-success">Update</button>
 
                                 </div>
                             </form>

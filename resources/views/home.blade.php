@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    <title>Dashboard</title>
     <main id="main" class="main">
 
         <div class="pagetitle">

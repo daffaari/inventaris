@@ -47,7 +47,7 @@ Route::get('/data-inventaris', [App\Http\Controllers\Inventaris\InventarisContro
 Route::get('/tambah/data-inventaris', [App\Http\Controllers\Inventaris\InventarisController::class, 'tambah'])->name('tambah.inventaris');
 Route::post('/simpan/data-inventaris', [App\Http\Controllers\Inventaris\InventarisController::class, 'simpan'])->name('simpan.inventaris');
 Route::get('/edit/data-inventaris={id}', [App\Http\Controllers\Inventaris\InventarisController::class, 'edit'])->name('edit.inventaris');
-Route::post('/update/data-inventaris={id}', [App\Http\Controllers\Inventaris\InventarisController::class, 'update'])->name('update.inventaris');
+Route::post('/update/data-inventaris', [App\Http\Controllers\Inventaris\InventarisController::class, 'update'])->name('update.inventaris');
 Route::post('/hapus/data-inventaris={id}', [App\Http\Controllers\Inventaris\InventarisController::class, 'delete'])->name('delete.inventaris');
 
 // Route Laporan Inventaris //

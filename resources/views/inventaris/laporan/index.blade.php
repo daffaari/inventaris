@@ -99,20 +99,22 @@
                                                 <td class="text-center">Rp. {{ number_format($data->jml_penyusutan) }}</td>
                                                 <td class="text-center">{{ $data->nilai_buku }}</td>
                                                 <td class="text-center">{{ $data->keterangan }}</td>
-                                                <td class="text-center">
-                                                    <form
+                                                <td class="text-center d-flex mr-1">
+                                                    <a href="{{ route('edit.laporan.inventaris', ['id' => $data->id]) }}">
+                                                        <button type="button" class="btn btn-warning">Edit
+                                                            <i class="ri-add-box-line mb-3"></i>
+                                                        </button>
+                                                    </a>
+                                                    <form class="ml-1"
                                                         action="{{ route('delete.laporan.inventaris', ['id' => $data->id]) }}"
                                                         method="POST">
                                                         @csrf
-                                                        <a
-                                                            href="{{ route('edit.laporan.inventaris', ['id' => $data->id]) }}">
-                                                            <button type="button" class="btn btn-warning">
-                                                                <i class="ri-add-box-line mb-3"></i></button>
-                                                        </a>
+
 
                                                         <a href="#">
-                                                            <button type="submit" class="btn btn-danger"><i
-                                                                    class="ri-delete-bin-2-line"></i></button>
+                                                            <button type="submit" class="btn btn-danger">Hapus
+                                                                <i class="ri-delete-bin-2-line">
+                                                                </i></button>
                                                         </a>
                                                     </form>
 

@@ -27,9 +27,15 @@ class LaporanAktivaController extends Controller
 
     public function tambah()
     {
+        $aktiva = DB::table('aktiva')
+            ->leftJoin('laporan_aktiva', 'laporan_aktiva.aktiva_id', '=', 'aktiva.id')
+            ->select('aktiva.*', 'laporan_aktiva.aktiva_id as id_aktiva')
+            ->get();
+
         $dataAktiva = Aktiva::all();
         return view('aktiva.laporan.tambah', [
-            'dataAktiva' => $dataAktiva
+            'dataAktiva' => $dataAktiva,
+            'aktiva' => $aktiva
         ]);
     }
 
@@ -38,6 +44,7 @@ class LaporanAktivaController extends Controller
         $validatedData = $request->validate(
             [
                 'aktiva_id' => 'required',
+                'nama' => 'required',
                 'tgl_perolehan' => 'required',
                 'harga_perolehan' => 'required',
                 'umur_teknis' => 'required',
@@ -51,6 +58,7 @@ class LaporanAktivaController extends Controller
             [
 
                 'aktiva_id.required' => 'kolom jenis aktiva tidak boleh kosong',
+                'nama.required' => 'kolom nama tidak boleh kosong',
                 'tgl_perolehan.required' => 'kolom tanggal perolehan tidak boleh kosong',
                 'harga_perolehan.required' => 'kolom harga perolehan tidak boleh kosong',
                 'umur_teknis.required' => 'kolom umur teknis tidak boleh kosong',
@@ -68,6 +76,7 @@ class LaporanAktivaController extends Controller
         $simpanData = new LaporanAktiva();
 
         $simpanData->aktiva_id = $request->aktiva_id;
+        $simpanData->nama = $request->nama;
         $simpanData->tgl_perolehan = $request->tgl_perolehan;
         $simpanData->harga_perolehan = $request->harga_perolehan;
         $simpanData->umur_teknis = $request->umur_teknis;
