@@ -57,6 +57,27 @@
             </ul>
         </li><!-- End Forms Nav -->
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-bookmarks"></i><span>Rekap</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a class="nav-link {{ \Request::route()->getName() == 'rekap' ? '' : 'collapsed' }}"
+                        href="{{ route('rekap') }}">
+                        <i class="bi bi-circle"></i>
+                        <span>Data Rekap</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link {{ \Request::route()->getName() == 'print' ? '' : 'collapsed' }}"
+                        href="{{ route('print') }}">
+                        <i class="bi bi-circle"></i>
+                        <span>Print</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Tables Nav -->
     </ul>
 
 </aside><!-- End Sidebar-->

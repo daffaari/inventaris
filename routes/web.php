@@ -60,3 +60,7 @@ Route::get('/edit/laporan-inventaris={id}', [App\Http\Controllers\Inventaris\Lap
 Route::post('/update/laporan-inventaris={id}', [App\Http\Controllers\Inventaris\LaporanInventarisController::class, 'update'])->name('update.laporan.inventaris');
 Route::post('/hapus/laporan-inventaris={id}', [App\Http\Controllers\Inventaris\LaporanInventarisController::class, 'delete'])->name('delete.laporan.inventaris');
 Route::get('/export/laporan-inventaris', [App\Http\Controllers\Inventaris\LaporanInventarisController::class, 'export'])->name('export.laporan.inventaris');
+
+// Route Rekap //
+Route::get('/data-rekap', [App\Http\Controllers\RekapController::class, 'index'])->name('rekap');
+Route::get('/print', [App\Http\Controllers\RekapController::class, 'print'])->name('print');
