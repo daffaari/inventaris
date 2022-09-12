@@ -27,4 +27,9 @@ class LaporanInventaris extends Model
         'nilai_buku',
         'keterangan'
     ];
+
+    public function namaInventaris()
+    {
+        return $this->belongsTo('App\Models\Inventaris', 'inventaris_id');
+    }
 }

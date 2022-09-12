@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Inventaris;
 
+use App\Exports\ExportLaporanInventaris;
 use App\Http\Controllers\Controller;
 use App\Models\Inventaris;
 use App\Models\LaporanInventaris;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanInventarisController extends Controller
 {
@@ -127,5 +130,12 @@ class LaporanInventarisController extends Controller
     {
         $data = LaporanInventaris::destroy($id);
         return back()->with('info', 'Sukses Menghapus Data');
+    }
+
+    public function export(Request $request)
+    {
+        $date = Carbon::now();
+        $date = date('Y-m-d');
+        return Excel::download(new ExportLaporanInventaris, 'laporan-inventaris-' . $date . '.xlsx');
     }
 }

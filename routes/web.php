@@ -40,6 +40,8 @@ Route::post('/simpan/laporan-aktiva', [App\Http\Controllers\Aktiva\LaporanAktiva
 Route::get('/edit/laporan-aktiva={id}', [App\Http\Controllers\Aktiva\LaporanAktivaController::class, 'edit'])->name('edit.laporan.aktiva');
 Route::post('/update/laporan-aktiva={id}', [App\Http\Controllers\Aktiva\LaporanAktivaController::class, 'update'])->name('update.laporan.aktiva');
 Route::post('/hapus/laporan-aktiva={id}', [App\Http\Controllers\Aktiva\LaporanAktivaController::class, 'delete'])->name('delete.laporan.aktiva');
+Route::get('/export/laporan-aktiva', [App\Http\Controllers\Aktiva\LaporanAktivaController::class, 'export'])->name('export.laporan.aktiva');
+
 
 
 // Route Inventaris //
@@ -57,3 +59,4 @@ Route::post('/simpan/laporan-inventaris', [App\Http\Controllers\Inventaris\Lapor
 Route::get('/edit/laporan-inventaris={id}', [App\Http\Controllers\Inventaris\LaporanInventarisController::class, 'edit'])->name('edit.laporan.inventaris');
 Route::post('/update/laporan-inventaris={id}', [App\Http\Controllers\Inventaris\LaporanInventarisController::class, 'update'])->name('update.laporan.inventaris');
 Route::post('/hapus/laporan-inventaris={id}', [App\Http\Controllers\Inventaris\LaporanInventarisController::class, 'delete'])->name('delete.laporan.inventaris');
+Route::get('/export/laporan-inventaris', [App\Http\Controllers\Inventaris\LaporanInventarisController::class, 'export'])->name('export.laporan.inventaris');

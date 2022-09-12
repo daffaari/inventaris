@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Aktiva;
 
-
+use App\Exports\ExportLaporanAktiva;
 use App\Http\Controllers\Controller;
 use App\Models\Aktiva;
 use App\Models\LaporanAktiva;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanAktivaController extends Controller
 {
@@ -114,5 +116,12 @@ class LaporanAktivaController extends Controller
     {
         $data = LaporanAktiva::destroy($id);
         return back()->with('info', 'Sukses Menghapus Data');
+    }
+
+    public function export(Request $request)
+    {
+        $date = Carbon::now();
+        $date = date('Y-m-d');
+        return Excel::download(new ExportLaporanAktiva, 'laporan-aktiva-' . $date . '.xlsx');
     }
 }

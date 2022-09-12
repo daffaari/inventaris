@@ -23,4 +23,9 @@ class LaporanAktiva extends Model
         'nilai_buku',
         'keterangan'
     ];
+
+    public function namaAktiva()
+    {
+        return $this->belongsTo('App\Models\Aktiva', 'aktiva_id');
+    }
 }

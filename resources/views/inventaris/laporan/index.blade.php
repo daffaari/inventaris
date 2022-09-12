@@ -51,10 +51,15 @@
                             <h5 class="card-title">Laporan Inventaris</h5>
 
                             <!-- Table with stripped rows -->
-                            <a href="{{ route('tambah.laporan.inventaris') }}">
-                                <button type="button" class="btn btn-success"><i class="ri-add-box-line mb-3"></i></button>
+                            <a href="{{ route('tambah.laporan.inventaris') }}" class="text-decoration-none">
+                                <button type="button" class="btn btn-success mb-2"><i class="ri-add-box-line mb-3"></i>
+                                    Tambah Data</button>
                             </a>
-                            <table class="table table-striped table-bordered table-responsive" id="data">
+                            <a href="{{ route('export.laporan.inventaris') }}">
+                                <button type="button" class="btn btn-dark mb-2"><i class="bi-printer mb-3"></i> Export
+                                    Excel</button>
+                            </a>
+                            <table class="table table-striped table-bordered w-100 table-responsive" id="data">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="text-center">#</th>
@@ -99,23 +104,24 @@
                                                 <td class="text-center">Rp. {{ number_format($data->jml_penyusutan) }}</td>
                                                 <td class="text-center">{{ $data->nilai_buku }}</td>
                                                 <td class="text-center">{{ $data->keterangan }}</td>
-                                                <td class="text-center d-flex mr-1">
-                                                    <a href="{{ route('edit.laporan.inventaris', ['id' => $data->id]) }}">
-                                                        <button type="button" class="btn btn-warning">Edit
+                                                <td class="text-center d-flex">
+
+                                                    <a href="{{ route('edit.laporan.inventaris', ['id' => $data->id]) }}"
+                                                        class="text-decoration-none">
+                                                        <button type="button" class="btn btn-warning d-flex h-75">Edit
                                                             <i class="ri-add-box-line mb-3"></i>
                                                         </button>
                                                     </a>
-                                                    <form class="ml-1"
+
+                                                    <form
                                                         action="{{ route('delete.laporan.inventaris', ['id' => $data->id]) }}"
                                                         method="POST">
                                                         @csrf
 
+                                                        <button type="submit" class="btn btn-danger ml-2 d-flex">Hapus
+                                                            <i class="ri-delete-bin-2-line"></i>
+                                                        </button>
 
-                                                        <a href="#">
-                                                            <button type="submit" class="btn btn-danger">Hapus
-                                                                <i class="ri-delete-bin-2-line">
-                                                                </i></button>
-                                                        </a>
                                                     </form>
 
                                                 </td>

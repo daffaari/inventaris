@@ -51,8 +51,14 @@
                             <h5 class="card-title">Laporan Data Aktiva</h5>
 
                             <!-- Table with stripped rows -->
-                            <a href="{{ route('tambah.laporan.aktiva') }}">
-                                <button type="button" class="btn btn-success"><i class="ri-add-box-line mb-3"></i></button>
+                            <a href="{{ route('tambah.laporan.aktiva') }}" class="text-decoration-none">
+                                <button type="button" class="btn btn-success mb-2"><i class="ri-add-box-line mb-3"></i>
+                                    Tambah
+                                    Data</button>
+                            </a>
+                            <a href="{{ route('export.laporan.aktiva') }}">
+                                <button type="button" class="btn btn-dark  mb-2"><i class="bi-printer mb-3">
+                                        Export Excel</i></button>
                             </a>
                             <table class="table table-striped table-bordered table-responsive" id="data">
                                 <thead>
@@ -85,28 +91,29 @@
                                                 <td class="text-center">{{ $data->tgl_perolehan }}</td>
                                                 <td class="text-center">Rp. {{ number_format($data->harga_perolehan) }}
                                                 </td>
-                                                <td class="text-center">{{ $data->umur_teknis }} bln</td>
+                                                <td class="text-center">{{ $data->umur_teknis }}</td>
                                                 <td class="text-center">{{ $data->penghapusan }}%</td>
                                                 <td class="text-center">Rp. {{ number_format($data->ak_penyusutan) }}</td>
                                                 <td class="text-center">Rp. {{ number_format($data->penyusutan_bln) }}</td>
                                                 <td class="text-center">Rp. {{ number_format($data->jml_penyu_bln) }}</td>
                                                 <td class="text-center">Rp. {{ number_format($data->nilai_buku) }}</td>
                                                 <td class="text-center">{{ $data->keterangan }}</td>
-                                                <td class="text-center d-flex mr-3">
-                                                    <a href="{{ route('edit.laporan.aktiva', ['id' => $data->id]) }}">
-                                                        <button type="button" class="btn btn-warning"> Edit
+                                                <td class="text-center d-flex">
+
+                                                    <a href="{{ route('edit.laporan.aktiva', ['id' => $data->id]) }}"
+                                                        class="text-decoration-none">
+                                                        <button type="button" class="btn btn-warning d-flex h-75"> Edit
                                                             <i class="ri-add-box-line mb-3"></i>
                                                         </button>
                                                     </a>
-                                                    <form class="ml-2"
+                                                    <form
                                                         action="{{ route('delete.laporan.aktiva', ['id' => $data->id]) }}"
                                                         method="POST">
                                                         @csrf
-                                                        <a href="#">
-                                                            <button type="submit" class="btn btn-danger"> Hapus
-                                                                <i class="ri-delete-bin-2-line"></i>
-                                                            </button>
-                                                        </a>
+                                                        <button type="submit" class="btn btn-danger ml-2 d-flex"> Hapus
+                                                            <i class="ri-delete-bin-2-line"></i>
+                                                        </button>
+
                                                     </form>
 
                                                 </td>

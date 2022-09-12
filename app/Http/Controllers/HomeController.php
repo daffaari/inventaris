@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aktiva;
+use App\Models\Inventaris;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = Aktiva::all();
-        return view('home', ['data' => $data]);
+        $aktiva = Aktiva::count();
+        $inventaris = Inventaris::count();
+        return view(
+            'home',
+            [
+                'aktiva' => $aktiva,
+                'inventaris' => $inventaris
+            ]
+        );
     }
 }

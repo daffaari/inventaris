@@ -86,7 +86,16 @@ class AktivaController extends Controller
 
     public function delete($id)
     {
-        $data = Aktiva::destroy($id);
-        return back()->with('info', 'Sukses Menghapus Data');
+        $relationMethods = ['laporan'];
+        $data = Aktiva::find($id);
+
+        foreach ($relationMethods as $relationMethod) {
+            if ($data->$relationMethod()->count() > 0) {
+                return back()->with('error', 'Gagal menghapus data dikarenakan data sedang dipakai di Data Laporan Aktiva');
+            } else {
+                $data->delete();
+                return back()->with('info', 'Berhasil Menghapus Data!');
+            }
+        }
     }
 }

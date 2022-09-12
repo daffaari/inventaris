@@ -52,7 +52,7 @@
 
                             <!-- Table with stripped rows -->
                             <a href="#">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-success  mb-2" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal"><i class="ri-add-box-line mb-3"></i></button>
                             </a>
                             <table class="table table-striped table-bordered w-100" id="data">
@@ -72,26 +72,23 @@
                                                 <td class="text-center">{{ $data->kode }}</td>
                                                 <td class="text-center">{{ $data->nama }}</td>
                                                 <td class="text-center d-flex">
-                                                    <a href="#">
-                                                        <button type="button" class="btn btn-warning btn-edit"
-                                                            data-id="{{ $data->id }}" data-nama="{{ $data->nama }}">
-                                                            Edit
-                                                            <i class="ri-edit-box-line"></i>
-                                                        </button>
-                                                    </a>
 
-                                                    <form class="ml-2"
-                                                        action="{{ route('delete.inventaris', ['id' => $data->id]) }}"
+                                                    <button type="button" class="btn btn-warning btn-edit d-flex h-75"
+                                                        data-id="{{ $data->id }}" data-nama="{{ $data->nama }}">
+                                                        Edit
+                                                        <i class="ri-edit-box-line"></i>
+                                                    </button>
+
+
+                                                    <form action="{{ route('delete.inventaris', ['id' => $data->id]) }}"
                                                         method="POST">
                                                         @csrf
 
+                                                        <button type="submit" class="btn btn-danger ml-2 d-flex">Hapus
+                                                            <i class="ri-delete-bin-2-line"> </i>
 
-                                                        <a href="#">
-                                                            <button type="submit" class="btn btn-danger">Hapus
-                                                                <i class="ri-delete-bin-2-line"> </i>
+                                                        </button>
 
-                                                            </button>
-                                                        </a>
                                                     </form>
 
                                                 </td>

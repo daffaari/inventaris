@@ -21,7 +21,8 @@
                                             <option selected>--Pilih Jenis Aktiva--</option>
                                             @foreach ($aktiva as $data)
                                                 <option value="{{ $data->id }}">{{ $data->nama }} -
-                                                    ({{ $data->kode }})</option>
+                                                    ({{ $data->kode }})
+                                                </option>
                                             @endforeach
                                         </select>
                                         <span class="text-danger">{{ $errors->first('aktiva_id') }}</span>
@@ -60,7 +61,7 @@
                                 <div class="row mb-3">
                                     <label for="umur_teknis" class="col-sm-2 col-form-label">Umur Teknis</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" name="umur_teknis"
+                                        <input type="text" class="form-control" name="umur_teknis"
                                             value="{{ old('umur_teknis') }}">
                                     </div>
                                     <span class="text-danger">{{ $errors->first('umur_teknis') }}</span>

@@ -11,4 +11,9 @@ class Inventaris extends Model
 
     // protected $table = 'inventaris';
     protected $fillable = ['kode', 'nama'];
+
+    public function laporan()
+    {
+        return $this->hasMany('App\Models\LaporanInventaris');
+    }
 }

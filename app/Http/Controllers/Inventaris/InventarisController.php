@@ -71,7 +71,16 @@ class InventarisController extends Controller
 
     public function delete($id)
     {
-        $data = Inventaris::destroy($id);
-        return back()->with('info', 'Sukses Menghapus Data');
+        $relationMethods = ['laporan'];
+        $data = Inventaris::find($id);
+
+        foreach ($relationMethods as $relationMethod) {
+            if ($data->$relationMethod()->count() > 0) {
+                return back()->with('error', 'Gagal menghapus data dikarenakan data sedang dipakai di Data Laporan Inventaris');
+            } else {
+                $data->delete();
+                return back()->with('info', 'Berhasil Menghapus Data!');
+            }
+        }
     }
 }
