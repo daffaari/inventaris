@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2022 at 06:19 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.0.19
+-- Generation Time: Sep 12, 2022 at 02:21 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,7 +44,7 @@ INSERT INTO `aktiva` (`id`, `kode`, `nama`, `created_at`, `updated_at`) VALUES
 (2, 'AKT0002', 'Kendaraan Dinas', '2022-09-09 06:16:39', '2022-09-09 06:16:39'),
 (3, 'AKT0003', 'Tanah', '2022-09-09 06:17:23', '2022-09-09 06:17:23'),
 (6, 'AKT0004', 'Adya', '2022-09-09 23:33:08', '2022-09-09 23:33:29'),
-(8, 'AKT0005', 'test 5', '2022-09-10 02:21:46', '2022-09-10 09:19:51');
+(16, 'AKT0005', 'TEST 1234', '2022-09-11 23:16:49', '2022-09-11 23:16:49');
 
 -- --------------------------------------------------------
 
@@ -81,11 +81,10 @@ CREATE TABLE `inventaris` (
 --
 
 INSERT INTO `inventaris` (`id`, `kode`, `nama`, `created_at`, `updated_at`) VALUES
-(1, 'INV0001', 'Mesin Kantor', '2022-09-10 08:23:03', '2022-09-10 08:23:03'),
 (2, 'INV0002', 'Perabot Kantor', '2022-09-10 08:23:15', '2022-09-10 08:23:15'),
 (5, 'INV0003', 'Perabot Rumah Dinas', '2022-09-10 09:50:10', '2022-09-10 09:50:10'),
 (6, 'INV0004', 'Alat Kebersihan', '2022-09-10 10:54:18', '2022-09-10 10:54:18'),
-(8, 'INV0005', 'test 123', '2022-09-10 16:18:38', '2022-09-10 16:18:44');
+(9, 'INV0006', 'Mesin Kantor', '2022-09-12 06:34:15', '2022-09-12 06:38:04');
 
 -- --------------------------------------------------------
 
@@ -99,7 +98,7 @@ CREATE TABLE `laporan_aktiva` (
   `nama` varchar(35) NOT NULL,
   `tgl_perolehan` date NOT NULL,
   `harga_perolehan` float NOT NULL,
-  `umur_teknis` int(5) NOT NULL,
+  `umur_teknis` varchar(15) NOT NULL,
   `penghapusan` int(3) NOT NULL,
   `ak_penyusutan` int(15) NOT NULL,
   `penyusutan_bln` int(15) NOT NULL,
@@ -115,8 +114,11 @@ CREATE TABLE `laporan_aktiva` (
 --
 
 INSERT INTO `laporan_aktiva` (`id`, `aktiva_id`, `nama`, `tgl_perolehan`, `harga_perolehan`, `umur_teknis`, `penghapusan`, `ak_penyusutan`, `penyusutan_bln`, `jml_penyu_bln`, `nilai_buku`, `keterangan`, `created_at`, `updated_at`) VALUES
-(5, 2, 'Lexus A30', '2022-09-10', 750000000, 1, 0, 0, 0, 0, 750000000, 'Mobil Dinas Baru', '2022-09-10 15:58:19', '2022-09-10 15:58:19'),
-(6, 6, 'TEST', '2022-09-10', 100000000, 5, 5, 100000, 0, 0, 1000000, 'TEST', '2022-09-10 16:02:31', '2022-09-10 16:02:31');
+(5, 2, 'Lexus A30', '2022-09-10', 750000000, '1', 0, 0, 0, 0, 750000000, 'Mobil Dinas Baru', '2022-09-10 15:58:19', '2022-09-10 15:58:19'),
+(6, 6, 'TEST', '2022-09-10', 100000000, '5', 5, 100000, 0, 0, 1000000, 'TEST', '2022-09-10 16:02:31', '2022-09-10 16:02:31'),
+(7, 3, 'Tanah Kosong', '2022-09-12', 500000000, '15 Tahun', 0, 0, 0, 0, 1, 'Tanah', '2022-09-12 04:10:34', '2022-09-12 04:10:34'),
+(11, 16, '2', '2022-09-12', 2, '2', 2, 2, 2, 2, 2, '2', '2022-09-12 06:17:04', '2022-09-12 06:17:04'),
+(12, 2, 'Range Rover Skidrow', '2022-09-12', 650000000, '5', 3, 15000000, 10000000, 5000000, 650000000, 'Mobil Dinas', '2022-09-12 10:01:05', '2022-09-12 10:01:05');
 
 -- --------------------------------------------------------
 
@@ -151,7 +153,8 @@ CREATE TABLE `laporan_inventaris` (
 
 INSERT INTO `laporan_inventaris` (`id`, `inventaris_id`, `nama`, `lokasi`, `kelompok`, `tgl_perolehan`, `banyak`, `harga_satuan`, `jml_hrg_perolehan`, `umur`, `penghapusan`, `akum_penyusutan`, `penyusutan_bln`, `jml_penyusutan`, `nilai_buku`, `keterangan`, `created_at`, `updated_at`) VALUES
 (2, 2, 'Kursi JT', 'Ruang Dirum', 'I', '2008-01-02', 1, 4000000, 4000000, '4 Tahun', 25, 3999999, 0, 3999999, 1, 'Rusak', '2022-09-10 13:52:37', '2022-09-10 14:12:48'),
-(3, 2, 'Piring', 'Dapur', '1', '2022-09-10', 50, 13000, 13000, '5', 0, 0, 0, 0, 13000, 'Piring di dapur kantor', '2022-09-10 16:05:41', '2022-09-10 16:05:41');
+(3, 2, 'Piring', 'Dapur', '1', '2022-09-10', 50, 13000, 13000, '5', 0, 0, 0, 0, 13000, 'Piring di dapur kantor', '2022-09-10 16:05:41', '2022-09-10 16:05:41'),
+(6, 9, '5', '5', '5', '2022-09-12', 5, 5, 5, '5', 5, 5, 5, 5, 5, '5', '2022-09-12 06:37:01', '2022-09-12 06:37:01');
 
 -- --------------------------------------------------------
 
@@ -300,7 +303,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `aktiva`
 --
 ALTER TABLE `aktiva`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -312,19 +315,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `inventaris`
 --
 ALTER TABLE `inventaris`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `laporan_aktiva`
 --
 ALTER TABLE `laporan_aktiva`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `laporan_inventaris`
 --
 ALTER TABLE `laporan_inventaris`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`
