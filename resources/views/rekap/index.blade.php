@@ -49,7 +49,8 @@
 
                         <div class="card-body">
                             <h5 class="card-title">Data Rekap</h5>
-                            <a href="{{ route('print') }}" class="float-right mb-3" target="_blank">
+                            <a href="{{ route('print') }}" class="float-right mb-3" target="_blank" data-bs-toggle="modal"
+                                data-bs-target="#cetakModal">
                                 <button type="button" class="btn btn-success"><i class="bi-printer mb-3"></i>
                                     Cetak</button>
                             </a>
@@ -195,6 +196,73 @@
                             <!-- End Table with stripped rows -->
 
                         </div>
+
+                        <!-- Modal Cetak -->
+                        <div class="modal fade" id="cetakModal" tabindex="-1" aria-labelledby="cetakModal"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="cetakModal">Cetak Data</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+
+
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <form action="{{ route('print') }}" method="GET" target="_blank">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label for="startDate">Tanggal Awal <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="date" name="startDate" id="startDate"
+                                                        class="form-control" required>
+
+                                                    @if ($errors->has('startDate'))
+                                                        <span class="text-danger">{{ $errors->first('startDate') }}</span>
+                                                    @endif
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="endDate">Tanggal Akhir <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="date" name="endDate" id="endDate" class="form-control"
+                                                        required>
+
+                                                    @if ($errors->has('endDate'))
+                                                        <span class="text-danger">{{ $errors->first('endDate') }}</span>
+                                                    @endif
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="pj">Penanggung Jawab <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text" name="pj" id="pj" class="form-control"
+                                                        required>
+
+                                                    @if ($errors->has('pj'))
+                                                        <span class="text-danger">{{ $errors->first('pj') }}</span>
+                                                    @endif
+
+                                                </div>
+
+
+                                                <div class="float-right mr-3">
+                                                    <button type="submit"
+                                                        class="btn btn-danger text-white">Cetak</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Modal Cetak -->
 
                     </div>
                 </div>

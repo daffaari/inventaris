@@ -138,4 +138,17 @@ class LaporanInventarisController extends Controller
         $date = date('Y-m-d');
         return Excel::download(new ExportLaporanInventaris, 'laporan-inventaris-' . $date . '.xlsx');
     }
+
+    public function cetak()
+    {
+        $startDate = request()->input('startDate');
+        $startDate = $startDate . " 00:00";
+        $endDate   = request()->input('endDate');
+        $endDate = $endDate . " 23:59";
+        $laporanInventaris = DB::table('laporan_inventaris')
+            ->select()
+            ->whereBetween('tgl_perolehan', [$startDate, $endDate])
+            ->get();
+        return view('inventaris.laporan.cetak', ['laporanInventaris' => $laporanInventaris]);
+    }
 }

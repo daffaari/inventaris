@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <title>Data Aktiva</title>
+    <title>Data User</title>
     <main id="main" class="main">
         <section class="section">
             <div class="row">
@@ -48,41 +48,41 @@
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title">Data Aktiva</h5>
+                            <h5 class="card-title">Data User</h5>
 
                             <!-- Table with stripped rows -->
                             <a href="#" class="text-decoration-none">
                                 <button type="button" class="btn btn-success  mb-2" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal"><i class="ri-add-box-line mb-3"> Tambah Data</i></button>
                             </a>
-                            <a href="{{ route('cetak.data.aktiva') }}" target="_blank">
-                                <button type="button" class="btn btn-dark  mb-2"><i class="bi-printer mb-3">
-                                        Cetak</i></button>
-                            </a>
+
                             <table class="table table-striped table-bordered w-100 table-responsive" id="data">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="text-center">#</th>
-                                        <th scope="col" class="text-center">Kode</th>
                                         <th scope="col" class="text-center">Nama</th>
+                                        <th scope="col" class="text-center">Username</th>
                                         <th scope="col" class="text-center" width="15%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (!empty($aktiva))
-                                        @foreach ($aktiva as $data)
+                                    @if (!empty($user))
+                                        @foreach ($user as $data)
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                                <td class="text-center">{{ $data->kode }}</td>
-                                                <td class="text-center">{{ $data->nama }}</td>
+                                                <td class="text-center">{{ $data->name }}</td>
+                                                <td class="text-center">{{ $data->username }}</td>
+
                                                 <td class="text-center d-flex">
+
                                                     <button type="button" class="btn btn-warning btn-edit d-flex h-75"
-                                                        data-id="{{ $data->id }}" data-nama="{{ $data->nama }}">
+                                                        data-id="{{ $data->id }}" data-nama="{{ $data->name }}"
+                                                        data-username="{{ $data->username }}"
+                                                        data-pw="{{ $data->password }}">
                                                         Edit <i class="ri-edit-box-line ml-2"></i>
                                                     </button>
 
-
-                                                    <form action="{{ route('delete.aktiva', ['id' => $data->id]) }}"
+                                                    <form action="{{ route('delete.user', ['id' => $data->id]) }}"
                                                         method="POST">
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger ml-2 d-flex">Hapus <i
@@ -114,17 +114,29 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Aktiva</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Users</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('simpan.aktiva') }}" method="POST">
+                                    <form action="{{ route('simpan.user') }}" method="POST">
                                         @csrf
                                         <div class="row mb-3">
                                             <label for="name" class="col-sm-2 col-form-label">Nama</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nama">
+                                                <input type="text" class="form-control" name="name">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="username" class="col-sm-2 col-form-label">Username</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="username">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="password" class="col-sm-2 col-form-label">Password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" name="password">
                                             </div>
                                         </div>
 
@@ -144,13 +156,20 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="editModal">Edit Data Aktiva</h5>
+                                    <h5 class="modal-title" id="editModal">Edit Data User</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('update.aktiva') }}" method="POST">
+                                    <form action="{{ route('update.user', ['id' => $data->id]) }}" method="POST">
                                         @csrf
+                                        <div class="row mb-3">
+                                            <input type="hidden" name="data_id">
+                                            <label for="username" class="col-sm-2 col-form-label">Username</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="username">
+                                            </div>
+                                        </div>
                                         <div class="row mb-3">
                                             <input type="hidden" name="data_id">
                                             <label for="name" class="col-sm-2 col-form-label">Nama</label>
@@ -183,12 +202,18 @@
         //     var nama = $(e.relatedTarget).data('target-id');
         //     $('#pass_id').val(nama);
         // });
+        /**/
         $('.btn-edit').click(function() {
             var data_id = $(this).attr('data-id');
             var data_nama = $(this).attr('data-nama');
+            var data_username = $(this).attr('data-username');
+            var data_pw = $(this).attr('data-pw');
             $('[name="data_id"]').val(data_id)
             $('[name="nama_edit"]').val(data_nama)
+            $('[name="username"]').val(data_username)
+            $('[name="password"]').val(data_pw)
             $('#editModal').modal('show');
         })
+
     });
 </script>

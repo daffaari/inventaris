@@ -98,4 +98,10 @@ class AktivaController extends Controller
             }
         }
     }
+
+    public function cetak()
+    {
+        $aktiva = Aktiva::all();
+        return view('aktiva.cetak', ['aktiva' => $aktiva]);
+    }
 }

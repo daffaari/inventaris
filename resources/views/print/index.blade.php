@@ -5,7 +5,12 @@
         border: 1px solid black;
         border-collapse: collapse;
     }
+
+    pj {
+        float: right;
+    }
 </style>
+<script src="https://cdn.tailwindcss.com"></script>
 <title>Halaman Cetak</title>
 <table style="width:100%">
     <thead>
@@ -21,7 +26,7 @@
         </tr>
         <tr>
         <tr>
-            <th class="text-left">Aktiva Tetap</th>
+            <th class="text-center">Aktiva Tetap</th>
         </tr>
         </tr>
 
@@ -77,7 +82,7 @@
             </tr>
 
             <tr>
-                <td>
+                <td class="text-center">
                     <b>Inventaris</b>
                 </td>
             </tr>
@@ -140,12 +145,17 @@
             </tr>
         @endforeach
         <tr>
-            <td><b>Total Aktiva Tetap & Inventaris</b></td>
-            <td><b>Rp. {{ number_format($sumAktiva->harga_peroleh + $sumInventaris->jml_hrg_perolehan) }}</b></td>
-            <td><b>Rp. {{ number_format($sumAktiva->ak_penyusutan + $sumInventaris->akm_penyusutan) }}</b></td>
-            <td><b>Rp. {{ number_format($sumAktiva->penyusutan_bln + $sumInventaris->penyusutan_bln_inv) }}</b></td>
-            <td><b>Rp. {{ number_format($sumAktiva->jml_penyu_bln + $sumInventaris->jml_penyusutan_inv) }}</b></td>
-            <td><b>Rp. {{ number_format($sumAktiva->nilai_buku + $sumInventaris->nl_buku_inv) }}</b></td>
+            <td class="text-center"><b>Total Aktiva Tetap & Inventaris</b></td>
+            <td class="text-center"><b>Rp.
+                    {{ number_format($sumAktiva->harga_peroleh + $sumInventaris->jml_hrg_perolehan) }}</b></td>
+            <td class="text-center"><b>Rp.
+                    {{ number_format($sumAktiva->ak_penyusutan + $sumInventaris->akm_penyusutan) }}</b></td>
+            <td class="text-center"><b>Rp.
+                    {{ number_format($sumAktiva->penyusutan_bln + $sumInventaris->penyusutan_bln_inv) }}</b></td>
+            <td class="text-center"><b>Rp.
+                    {{ number_format($sumAktiva->jml_penyu_bln + $sumInventaris->jml_penyusutan_inv) }}</b></td>
+            <td class="text-center"><b>Rp.
+                    {{ number_format($sumAktiva->nilai_buku + $sumInventaris->nl_buku_inv) }}</b></td>
 
         </tr>
     </tbody>
@@ -153,4 +163,16 @@
     </tbody>
 
 
+
+
 </table>
+<div class="float-right my-3 mx-2">
+    <p> <b> Ambon , {{ Carbon\Carbon::now()->format('d-m-Y') }} </b></p>
+    <br>
+    <p class="my-12"><b>{{ $pj }}</b> </p>
+
+</div>
+
+<script>
+    // window.print();
+</script>

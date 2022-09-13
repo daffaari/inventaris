@@ -51,9 +51,14 @@
                             <h5 class="card-title">Data Inventaris</h5>
 
                             <!-- Table with stripped rows -->
-                            <a href="#">
+                            <a href="#" style="text-decoration: none;">
                                 <button type="button" class="btn btn-success  mb-2" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal"><i class="ri-add-box-line mb-3"></i> Tambah Data</button>
+                            </a>
+
+                            <a href="{{ route('cetak.data.inventaris') }}" target="_blank">
+                                <button type="button" class="btn btn-dark  mb-2"><i class="ri-add-box-line mb-3"></i>
+                                    Cetak</button>
                             </a>
                             <table class="table table-striped table-bordered w-100" id="data">
                                 <thead>

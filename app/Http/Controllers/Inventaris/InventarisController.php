@@ -83,4 +83,10 @@ class InventarisController extends Controller
             }
         }
     }
+
+    public function cetak()
+    {
+        $inventaris = Inventaris::all();
+        return view('inventaris.cetak', ['inventaris' => $inventaris]);
+    }
 }

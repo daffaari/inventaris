@@ -71,6 +71,22 @@
                 </li>
             </ul>
         </li><!-- End Tables Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+                <i class="ri ri-user-follow-line"></i><span>User</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a class="nav-link {{ \Request::route()->getName() == 'user' ? '' : 'collapsed' }}"
+                        href="{{ route('user.data') }}">
+                        <i class="bi bi-circle"></i>
+                        <span>Data User</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li><!-- End Charts Nav -->
     </ul>
 
 </aside><!-- End Sidebar-->

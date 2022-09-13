@@ -55,9 +55,13 @@
                                 <button type="button" class="btn btn-success mb-2"><i class="ri-add-box-line mb-3"></i>
                                     Tambah Data</button>
                             </a>
-                            <a href="{{ route('export.laporan.inventaris') }}">
-                                <button type="button" class="btn btn-dark mb-2"><i class="bi-printer mb-3"></i> Export
+                            <a href="{{ route('export.laporan.inventaris') }}" class="text-decoration-none">
+                                <button type="button" class="btn btn-primary mb-2"><i class="bi-printer mb-3"></i> Export
                                     Excel</button>
+                            </a>
+                            <a href="#" target="_blank" data-bs-toggle="modal" data-bs-target="#cetakModal">
+                                <button type="button" class="btn btn-dark mb-2"><i class="bi-printer mb-3"></i>
+                                    Cetak</button>
                             </a>
                             <table class="table table-striped table-bordered w-100 table-responsive" id="data">
                                 <thead>
@@ -171,37 +175,60 @@
                         </div>
                     </div>
 
-                    <!-- Edit Modal -->
-                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal"
+                    <!-- Modal Cetak -->
+                    <div class="modal fade" id="cetakModal" tabindex="-1" aria-labelledby="cetakModal"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="editModal">Edit Data Inventaris</h5>
+                                    <h5 class="modal-title" id="cetakModal">Cetak Data</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
+
+
                                 <div class="modal-body">
-                                    <form action="#" method="POST">
-                                        @csrf
-                                        <div class="row mb-3">
-                                            <label for="name" class="col-sm-2 col-form-label">Nama</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nama"
-                                                    id="pass_id">
+                                    <div class="row">
+                                        <form action="{{ route('cetak.laporan.inventaris') }}" method="GET"
+                                            target="_blank">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="startDate">Tanggal Awal <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="date" name="startDate" id="startDate"
+                                                    class="form-control" required>
+
+                                                @if ($errors->has('startDate'))
+                                                    <span class="text-danger">{{ $errors->first('startDate') }}</span>
+                                                @endif
+
                                             </div>
-                                        </div>
 
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">Update</button>
+                                            <div class="form-group">
+                                                <label for="endDate">Tanggal Akhir <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="date" name="endDate" id="endDate" class="form-control"
+                                                    required>
 
-                                        </div>
-                                    </form><!-- End Horizontal Form -->
+                                                @if ($errors->has('endDate'))
+                                                    <span class="text-danger">{{ $errors->first('endDate') }}</span>
+                                                @endif
 
+                                            </div>
+
+
+                                            <div class="float-right mr-3">
+                                                <button type="submit" class="btn btn-danger text-white">Cetak</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+                    <!-- End Modal Cetak -->
                 </div>
         </section>
 

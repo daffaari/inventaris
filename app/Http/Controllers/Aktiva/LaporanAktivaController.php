@@ -124,4 +124,17 @@ class LaporanAktivaController extends Controller
         $date = date('Y-m-d');
         return Excel::download(new ExportLaporanAktiva, 'laporan-aktiva-' . $date . '.xlsx');
     }
+
+    public function cetak()
+    {
+        $startDate = request()->input('startDate');
+        $startDate = $startDate . " 00:00";
+        $endDate   = request()->input('endDate');
+        $endDate = $endDate . " 23:59";
+        $laporanAktiva = DB::table('laporan_aktiva')
+            ->select()
+            ->whereBetween('tgl_perolehan', [$startDate, $endDate])
+            ->get();
+        return view('aktiva.laporan.cetak', ['laporanAktiva' => $laporanAktiva]);
+    }
 }

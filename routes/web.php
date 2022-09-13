@@ -32,6 +32,7 @@ Route::post('/simpan/data-aktiva', [App\Http\Controllers\Aktiva\AktivaController
 Route::get('/edit/data-aktiva={id}', [App\Http\Controllers\Aktiva\AktivaController::class, 'edit'])->name('edit.aktiva');
 Route::post('/update/data-aktiva', [App\Http\Controllers\Aktiva\AktivaController::class, 'update'])->name('update.aktiva');
 Route::post('/hapus/data-aktiva={id}', [App\Http\Controllers\Aktiva\AktivaController::class, 'delete'])->name('delete.aktiva');
+Route::get('/cetak/data-aktiva', [App\Http\Controllers\Aktiva\AktivaController::class, 'cetak'])->name('cetak.data.aktiva');
 
 // Route Input Aktiva //
 Route::get('/laporan-aktiva', [App\Http\Controllers\Aktiva\LaporanAktivaController::class, 'index'])->name('laporan.aktiva');
@@ -41,6 +42,7 @@ Route::get('/edit/laporan-aktiva={id}', [App\Http\Controllers\Aktiva\LaporanAkti
 Route::post('/update/laporan-aktiva={id}', [App\Http\Controllers\Aktiva\LaporanAktivaController::class, 'update'])->name('update.laporan.aktiva');
 Route::post('/hapus/laporan-aktiva={id}', [App\Http\Controllers\Aktiva\LaporanAktivaController::class, 'delete'])->name('delete.laporan.aktiva');
 Route::get('/export/laporan-aktiva', [App\Http\Controllers\Aktiva\LaporanAktivaController::class, 'export'])->name('export.laporan.aktiva');
+Route::get('/cetak/laporan-aktiva', [App\Http\Controllers\Aktiva\LaporanAktivaController::class, 'cetak'])->name('cetak.laporan.aktiva');
 
 
 
@@ -51,6 +53,7 @@ Route::post('/simpan/data-inventaris', [App\Http\Controllers\Inventaris\Inventar
 Route::get('/edit/data-inventaris={id}', [App\Http\Controllers\Inventaris\InventarisController::class, 'edit'])->name('edit.inventaris');
 Route::post('/update/data-inventaris', [App\Http\Controllers\Inventaris\InventarisController::class, 'update'])->name('update.inventaris');
 Route::post('/hapus/data-inventaris={id}', [App\Http\Controllers\Inventaris\InventarisController::class, 'delete'])->name('delete.inventaris');
+Route::get('/cetak/data-inventaris', [App\Http\Controllers\Inventaris\InventarisController::class, 'cetak'])->name('cetak.data.inventaris');
 
 // Route Laporan Inventaris //
 Route::get('/laporan-inventaris', [App\Http\Controllers\Inventaris\LaporanInventarisController::class, 'index'])->name('laporan.inventaris');
@@ -60,7 +63,13 @@ Route::get('/edit/laporan-inventaris={id}', [App\Http\Controllers\Inventaris\Lap
 Route::post('/update/laporan-inventaris={id}', [App\Http\Controllers\Inventaris\LaporanInventarisController::class, 'update'])->name('update.laporan.inventaris');
 Route::post('/hapus/laporan-inventaris={id}', [App\Http\Controllers\Inventaris\LaporanInventarisController::class, 'delete'])->name('delete.laporan.inventaris');
 Route::get('/export/laporan-inventaris', [App\Http\Controllers\Inventaris\LaporanInventarisController::class, 'export'])->name('export.laporan.inventaris');
+Route::get('/cetak/laporan-inventaris', [App\Http\Controllers\Inventaris\LaporanInventarisController::class, 'cetak'])->name('cetak.laporan.inventaris');
 
+// Route User //
+Route::get('/data-user', [App\Http\Controllers\UserController::class, 'index'])->name('user.data');
+Route::post('/simpan/user', [App\Http\Controllers\UserController::class, 'simpan'])->name('simpan.user');
+Route::post('/hapus/user={id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('delete.user');
+Route::post('/update/data/user={id}', [App\Http\Controllers\UserController::class, 'update'])->name('update.user');
 // Route Rekap //
 Route::get('/data-rekap', [App\Http\Controllers\RekapController::class, 'index'])->name('rekap');
 Route::get('/print', [App\Http\Controllers\RekapController::class, 'print'])->name('print');
