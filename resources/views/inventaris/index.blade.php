@@ -53,7 +53,7 @@
                             <!-- Table with stripped rows -->
                             <a href="#">
                                 <button type="button" class="btn btn-success  mb-2" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"><i class="ri-add-box-line mb-3"></i></button>
+                                    data-bs-target="#exampleModal"><i class="ri-add-box-line mb-3"></i> Tambah Data</button>
                             </a>
                             <table class="table table-striped table-bordered w-100" id="data">
                                 <thead>

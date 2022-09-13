@@ -29,12 +29,12 @@ class LaporanInventarisController extends Controller
 
     public function tambah()
     {
-        $inventaris = DB::table('inventaris')
+        $inv = DB::table('inventaris')
             ->leftJoin('laporan_inventaris', 'laporan_inventaris.inventaris_id', '=', 'inventaris.id')
             ->select('inventaris.*', 'laporan_inventaris.inventaris_id as id_inventaris')
             ->get();
 
-        $inv = Inventaris::all();
+        $inventaris = Inventaris::all();
         return view(
             'inventaris.laporan.tambah',
             [
