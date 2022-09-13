@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2022 at 02:21 PM
+-- Generation Time: Sep 13, 2022 at 07:45 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -41,10 +41,9 @@ CREATE TABLE `aktiva` (
 
 INSERT INTO `aktiva` (`id`, `kode`, `nama`, `created_at`, `updated_at`) VALUES
 (1, 'AKT0001', 'Rumah Dinas', '2022-09-09 06:09:41', '2022-09-10 09:01:31'),
-(2, 'AKT0002', 'Kendaraan Dinas', '2022-09-09 06:16:39', '2022-09-09 06:16:39'),
+(2, 'AKT0002', 'Gedung Kantor', '2022-09-09 06:16:39', '2022-09-12 21:50:51'),
 (3, 'AKT0003', 'Tanah', '2022-09-09 06:17:23', '2022-09-09 06:17:23'),
-(6, 'AKT0004', 'Adya', '2022-09-09 23:33:08', '2022-09-09 23:33:29'),
-(16, 'AKT0005', 'TEST 1234', '2022-09-11 23:16:49', '2022-09-11 23:16:49');
+(6, 'AKT0004', 'Adya', '2022-09-09 23:33:08', '2022-09-09 23:33:29');
 
 -- --------------------------------------------------------
 
@@ -83,7 +82,6 @@ CREATE TABLE `inventaris` (
 INSERT INTO `inventaris` (`id`, `kode`, `nama`, `created_at`, `updated_at`) VALUES
 (2, 'INV0002', 'Perabot Kantor', '2022-09-10 08:23:15', '2022-09-10 08:23:15'),
 (5, 'INV0003', 'Perabot Rumah Dinas', '2022-09-10 09:50:10', '2022-09-10 09:50:10'),
-(6, 'INV0004', 'Alat Kebersihan', '2022-09-10 10:54:18', '2022-09-10 10:54:18'),
 (9, 'INV0006', 'Mesin Kantor', '2022-09-12 06:34:15', '2022-09-12 06:38:04');
 
 -- --------------------------------------------------------
@@ -96,15 +94,15 @@ CREATE TABLE `laporan_aktiva` (
   `id` int(15) NOT NULL,
   `aktiva_id` int(5) NOT NULL,
   `nama` varchar(35) NOT NULL,
-  `tgl_perolehan` date NOT NULL,
+  `tgl_perolehan` date DEFAULT NULL,
   `harga_perolehan` float NOT NULL,
-  `umur_teknis` varchar(15) NOT NULL,
-  `penghapusan` int(3) NOT NULL,
+  `umur_teknis` varchar(15) DEFAULT NULL,
+  `penghapusan` int(3) DEFAULT 0,
   `ak_penyusutan` int(15) NOT NULL,
   `penyusutan_bln` int(15) NOT NULL,
   `jml_penyu_bln` int(15) NOT NULL,
   `nilai_buku` float NOT NULL,
-  `keterangan` varchar(50) NOT NULL,
+  `keterangan` varchar(50) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -114,11 +112,11 @@ CREATE TABLE `laporan_aktiva` (
 --
 
 INSERT INTO `laporan_aktiva` (`id`, `aktiva_id`, `nama`, `tgl_perolehan`, `harga_perolehan`, `umur_teknis`, `penghapusan`, `ak_penyusutan`, `penyusutan_bln`, `jml_penyu_bln`, `nilai_buku`, `keterangan`, `created_at`, `updated_at`) VALUES
-(5, 2, 'Lexus A30', '2022-09-10', 750000000, '1', 0, 0, 0, 0, 750000000, 'Mobil Dinas Baru', '2022-09-10 15:58:19', '2022-09-10 15:58:19'),
-(6, 6, 'TEST', '2022-09-10', 100000000, '5', 5, 100000, 0, 0, 1000000, 'TEST', '2022-09-10 16:02:31', '2022-09-10 16:02:31'),
-(7, 3, 'Tanah Kosong', '2022-09-12', 500000000, '15 Tahun', 0, 0, 0, 0, 1, 'Tanah', '2022-09-12 04:10:34', '2022-09-12 04:10:34'),
-(11, 16, '2', '2022-09-12', 2, '2', 2, 2, 2, 2, 2, '2', '2022-09-12 06:17:04', '2022-09-12 06:17:04'),
-(12, 2, 'Range Rover Skidrow', '2022-09-12', 650000000, '5', 3, 15000000, 10000000, 5000000, 650000000, 'Mobil Dinas', '2022-09-12 10:01:05', '2022-09-12 10:01:05');
+(16, 2, 'BPD Maluku (Jln.Pattimura)', NULL, 3164350000, '20 Tahun', 5, 2147483647, 0, 2147483647, 1, 'Hapus Buku', '2022-09-13 04:53:37', '2022-09-13 04:53:37'),
+(17, 3, 'Tanah Jln.Pattimura', NULL, 6000000000, NULL, NULL, 0, 0, 0, 6000000000, NULL, '2022-09-13 04:54:34', '2022-09-13 04:54:34'),
+(18, 2, 'Penangkal Petir, Lift.', NULL, 190081000, '20 Tahun', 5, 190081268, 0, 190081268, 0, NULL, '2022-09-13 04:55:16', '2022-09-13 04:55:16'),
+(19, 3, 'Tanah Jln.Mangga Dua', NULL, 96000000, NULL, NULL, 0, 0, 0, 96000000, NULL, '2022-09-13 04:56:24', '2022-09-13 04:56:24'),
+(20, 1, 'Revaluasi Rumah Dinas', NULL, 356074000, '20 Tahun', 5, 356073579, 0, 356073579, 0, 'Hapus Buku', '2022-09-13 04:57:35', '2022-09-13 04:57:35');
 
 -- --------------------------------------------------------
 
@@ -132,17 +130,17 @@ CREATE TABLE `laporan_inventaris` (
   `nama` varchar(50) NOT NULL,
   `lokasi` text NOT NULL,
   `kelompok` text NOT NULL,
-  `tgl_perolehan` date NOT NULL,
+  `tgl_perolehan` date DEFAULT NULL,
   `banyak` int(5) NOT NULL,
   `harga_satuan` int(35) NOT NULL,
   `jml_hrg_perolehan` int(35) NOT NULL,
-  `umur` text NOT NULL,
-  `penghapusan` int(10) NOT NULL,
+  `umur` text DEFAULT NULL,
+  `penghapusan` int(10) DEFAULT 0,
   `akum_penyusutan` int(35) NOT NULL,
   `penyusutan_bln` int(15) NOT NULL,
   `jml_penyusutan` int(35) NOT NULL,
   `nilai_buku` int(35) NOT NULL,
-  `keterangan` text NOT NULL,
+  `keterangan` text DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -152,9 +150,8 @@ CREATE TABLE `laporan_inventaris` (
 --
 
 INSERT INTO `laporan_inventaris` (`id`, `inventaris_id`, `nama`, `lokasi`, `kelompok`, `tgl_perolehan`, `banyak`, `harga_satuan`, `jml_hrg_perolehan`, `umur`, `penghapusan`, `akum_penyusutan`, `penyusutan_bln`, `jml_penyusutan`, `nilai_buku`, `keterangan`, `created_at`, `updated_at`) VALUES
-(2, 2, 'Kursi JT', 'Ruang Dirum', 'I', '2008-01-02', 1, 4000000, 4000000, '4 Tahun', 25, 3999999, 0, 3999999, 1, 'Rusak', '2022-09-10 13:52:37', '2022-09-10 14:12:48'),
-(3, 2, 'Piring', 'Dapur', '1', '2022-09-10', 50, 13000, 13000, '5', 0, 0, 0, 0, 13000, 'Piring di dapur kantor', '2022-09-10 16:05:41', '2022-09-10 16:05:41'),
-(6, 9, '5', '5', '5', '2022-09-12', 5, 5, 5, '5', 5, 5, 5, 5, 5, '5', '2022-09-12 06:37:01', '2022-09-12 06:37:01');
+(7, 9, 'Printer Cannon M530', 'SKAI', 'I', '2008-01-25', 1, 3000000, 3000000, '4 Tahun', 25, 2999999, 0, 2999999, 1, 'Rusak', '2022-09-13 05:01:53', '2022-09-13 05:01:53'),
+(8, 9, 'Laptop', 'SKK', 'I', '2008-03-24', 1, 15000000, 15000000, '4 Tahun', 25, 14999999, 0, 14999999, 1, 'Rusak', '2022-09-13 05:05:36', '2022-09-13 05:05:36');
 
 -- --------------------------------------------------------
 
@@ -321,13 +318,13 @@ ALTER TABLE `inventaris`
 -- AUTO_INCREMENT for table `laporan_aktiva`
 --
 ALTER TABLE `laporan_aktiva`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `laporan_inventaris`
 --
 ALTER TABLE `laporan_inventaris`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `migrations`

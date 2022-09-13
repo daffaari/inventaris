@@ -69,13 +69,6 @@
                         <span>Data Rekap</span>
                     </a>
                 </li>
-                <li>
-                    <a class="nav-link {{ \Request::route()->getName() == 'print' ? '' : 'collapsed' }}"
-                        href="{{ route('print') }}">
-                        <i class="bi bi-circle"></i>
-                        <span>Print</span>
-                    </a>
-                </li>
             </ul>
         </li><!-- End Tables Nav -->
     </ul>

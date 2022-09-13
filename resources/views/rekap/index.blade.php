@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <title>Rekap Data Aktiva</title>
+    <title>Rekap Data</title>
     <main id="main" class="main">
         <section class="section">
             <div class="row">
@@ -49,7 +49,10 @@
 
                         <div class="card-body">
                             <h5 class="card-title">Data Rekap</h5>
-
+                            <a href="{{ route('print') }}" class="float-right mb-3" target="_blank">
+                                <button type="button" class="btn btn-success"><i class="bi-printer mb-3"></i>
+                                    Cetak</button>
+                            </a>
                             <!-- Table with stripped rows -->
                             <table class="table table-striped table-bordered table-responsive">
                                 <thead>
@@ -61,7 +64,7 @@
                                         <th scope="col" class="text-center">Penyusutan (dlm bulan berjalan)</th>
                                         <th scope="col" class="text-center">Jumlah Penyusutan (sampai bln berjalan)</th>
                                         <th scope="col" class="text-center">Nilai Buku</th>
-                                        <th scope="col" class="text-center">Keterangan</th>
+
                                     </tr>
                                     <tr>
                                     <tr>
@@ -90,7 +93,7 @@
                                                 <td class="text-center">Rp.
                                                     {{ number_format($data->harga_perolehan - $data->jml_penyusutan_bln) }}
                                                 </td>
-                                                <td class="text-center">{{ $data->keterangan }}</td>
+
 
 
                                             </tr>
@@ -105,9 +108,7 @@
                                         <tr>
                                             <td>
 
-                                            <td>
                                                 <b> Total Aktiva Tetap</b>
-                                            </td>
 
                                             <td class="text-center"> <b> Rp. {{ number_format($a->hrg_perolehan) }} </b>
                                             </td>
@@ -153,7 +154,7 @@
                                                 <td class="text-center">Rp.
                                                     {{ number_format($data->jml_hrg_perolehan - $data->nl_buku_inv) }}
                                                 </td>
-                                                <td class="text-center">{{ $data->keterangan }}</td>
+
 
 
                                             </tr>
@@ -168,9 +169,7 @@
                                         <tr>
                                             <td>
 
-                                            <td>
                                                 <b> Total Inventaris</b>
-                                            </td>
 
                                             <td class="text-center"> <b> Rp. {{ number_format($a->jml_hrg_perolehan) }}
                                                 </b>

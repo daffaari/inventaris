@@ -29,14 +29,14 @@ class LaporanAktivaController extends Controller
 
     public function tambah()
     {
-        $aktiva = DB::table('aktiva')
+        $dataAktiva = DB::table('aktiva')
             ->leftJoin('laporan_aktiva', 'laporan_aktiva.aktiva_id', '=', 'aktiva.id')
             ->select('aktiva.*', 'laporan_aktiva.aktiva_id as id_aktiva')
             ->get();
 
-        $dataAktiva = Aktiva::all();
+        $aktiva = Aktiva::all();
         return view('aktiva.laporan.tambah', [
-            'dataAktiva' => $dataAktiva,
+            // 'dataAktiva' => $dataAktiva,
             'aktiva' => $aktiva
         ]);
     }
@@ -47,15 +47,15 @@ class LaporanAktivaController extends Controller
             [
                 'aktiva_id' => 'required',
                 'nama' => 'required',
-                'tgl_perolehan' => 'required',
+                //'tgl_perolehan' => 'required',
                 'harga_perolehan' => 'required',
-                'umur_teknis' => 'required',
-                'penghapusan' => 'required',
+                // 'umur_teknis' => 'required',
+                // 'penghapusan' => 'required',
                 'ak_penyusutan' => 'required',
                 'penyusutan_bln' => 'required',
                 'jml_penyu_bln' => 'required',
                 'nilai_buku' => 'required',
-                'keterangan' => 'required',
+                // 'keterangan' => 'required',
             ],
             [
 

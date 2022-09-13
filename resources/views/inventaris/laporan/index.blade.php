@@ -100,9 +100,9 @@
                                                 <td class="text-center">{{ $data->penghapusan }}%</td>
                                                 <td class="text-center">Rp. {{ number_format($data->akum_penyusutan) }}
                                                 </td>
-                                                <td class="text-center">{{ $data->penyusutan_bln }}</td>
+                                                <td class="text-center">Rp. {{ number_format($data->penyusutan_bln) }}</td>
                                                 <td class="text-center">Rp. {{ number_format($data->jml_penyusutan) }}</td>
-                                                <td class="text-center">{{ $data->nilai_buku }}</td>
+                                                <td class="text-center">Rp. {{ number_format($data->nilai_buku) }}</td>
                                                 <td class="text-center">{{ $data->keterangan }}</td>
                                                 <td class="text-center d-flex">
 

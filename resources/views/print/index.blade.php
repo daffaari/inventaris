@@ -6,6 +6,7 @@
         border-collapse: collapse;
     }
 </style>
+<title>Halaman Cetak</title>
 <table style="width:100%">
     <thead>
         <tr>

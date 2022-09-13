@@ -30,6 +30,14 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
+                                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="nama"
+                                            value="{{ $data->nama }}">
+                                    </div>
+                                    <span class="text-danger">{{ $errors->first('nama') }}</span>
+                                </div>
+                                <div class="row mb-3">
                                     <label for="tgl_perolehan" class="col-sm-2 col-form-label">Tanggal
                                         Perolehan</label>
                                     <div class="col-sm-10">
