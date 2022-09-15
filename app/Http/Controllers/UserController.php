@@ -29,11 +29,12 @@ class UserController extends Controller
             ]
         );;
 
-        $request->merge(['password' => bcrypt($request->get('password'))]);
+        // $request->merge(['password' => bcrypt($request->get('password'))]);
 
         $simpanData = new User();
         $simpanData->username = $request->username;
         $simpanData->name = $request->name;
+        $simpanData->password = bcrypt($request->get('password'));
 
         $simpanData->save();
 
