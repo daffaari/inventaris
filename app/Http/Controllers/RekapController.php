@@ -74,7 +74,7 @@ class RekapController extends Controller
         $laporanAktiva = DB::table('laporan_aktiva')->select()
             ->selectRaw('sum(harga_perolehan) as harga_perolehan')
             ->selectRaw('sum(ak_penyusutan) as akumulasi_penyusutan')
-            ->selectRaw('sum(penyusutan_bln) as penyusutan_bulan')
+            ->selectRaw('sum(penyusutan_bln) as penyu_bln')
             ->selectRaw('sum(jml_penyu_bln) as jml_penyusutan_bln')
             ->selectRaw('sum(nilai_buku) as nilai_buku')
             ->groupBy('aktiva_id')
@@ -83,11 +83,11 @@ class RekapController extends Controller
 
         $resultAktiva = DB::table('laporan_aktiva')
             ->select(DB::raw('SUM(harga_perolehan) as hrg_perolehan,
-        SUM(ak_penyusutan) as akumulasi_penyusutan,
-        SUM(penyusutan_bln) as penyusutan_bulan,
-        SUM(jml_penyu_bln) as jml_penyusutan_bln,
-        SUM(nilai_buku) as nl_buku,
-        keterangan as ket '))
+            SUM(ak_penyusutan) as akumulasi_penyusutan,
+            SUM(penyusutan_bln) as penyusutan_bulan,
+            SUM(jml_penyu_bln) as jml_penyusutan_bln,
+            SUM(nilai_buku) as nl_buku,
+            keterangan as ket '))
             ->whereBetween('tgl_perolehan', [$startDate, $endDate])
             ->get();
 

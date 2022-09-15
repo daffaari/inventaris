@@ -89,7 +89,7 @@
                                                 <td class="text-center">Rp. {{ number_format($data->penyusutan_bulan) }}
                                                 </td>
                                                 <td class="text-center">Rp.
-                                                    {{ number_format($data->akumulasi_penyusutan + $data->penyusutan_bulan) }}
+                                                    {{ number_format($data->jml_penyusutan_bln) }}
                                                 </td>
                                                 <td class="text-center">Rp.
                                                     {{ number_format($data->nilai_buku) }}
