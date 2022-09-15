@@ -92,7 +92,7 @@
                                                     {{ number_format($data->akumulasi_penyusutan + $data->penyusutan_bulan) }}
                                                 </td>
                                                 <td class="text-center">Rp.
-                                                    {{ number_format($data->harga_perolehan - $data->jml_penyusutan_bln) }}
+                                                    {{ number_format($data->nilai_buku) }}
                                                 </td>
 
 
@@ -153,7 +153,7 @@
                                                     {{ number_format($data->akm_penyusutan + $data->jml_penyusutan_inv) }}
                                                 </td>
                                                 <td class="text-center">Rp.
-                                                    {{ number_format($data->jml_hrg_perolehan - $data->nl_buku_inv) }}
+                                                    {{ number_format($data->nl_buku_inv) }}
                                                 </td>
 
 

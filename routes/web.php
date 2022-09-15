@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth'], function () {
 });
 Route::get('/', function () {
-    return redirect('/login')->name('login');
-});
+    return redirect('/login');
+})->name('login');
 
 Auth::routes();
 Route::post('/login-handler', [App\Http\Controllers\AuthController::class, 'loginHandler'])->name('loginHandler');
