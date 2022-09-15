@@ -4,7 +4,8 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link {{ \Request::route()->getName() == 'home' ? '' : 'collapsed' }}" href="/home">
+            <a class="nav-link {{ \Request::route()->getName() == 'home' ? '' : 'collapsed' }}"
+                href="{{ route('home') }}">
                 <i class="bi bi-clipboard2-data"></i>
                 <span>Dashboard</span>
             </a>
@@ -17,7 +18,7 @@
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li class="nav-item ">
                     <a class="nav-link {{ \Request::route()->getName() == 'aktiva' ? '' : 'collapsed' }}"
-                        href="/data-aktiva">
+                        href="{{ route('aktiva') }}">
                         <i class="bi bi-circle"></i>
                         <span>Data Aktiva</span>
                     </a>
@@ -25,7 +26,7 @@
 
                 <li class="nav-item ">
                     <a class="nav-link {{ \Request::route()->getName() == 'laporan.aktiva' ? '' : 'collapsed' }}"
-                        href="/laporan-aktiva">
+                        href="{{ route('laporan.aktiva') }}">
                         <i class="bi bi-circle"></i>
                         <span>Laporan Aktiva</span>
                     </a>
