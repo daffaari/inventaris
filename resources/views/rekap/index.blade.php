@@ -150,7 +150,7 @@
                                                 <td class="text-center">Rp. {{ number_format($data->penyusutan_bln_inv) }}
                                                 </td>
                                                 <td class="text-center">Rp.
-                                                    {{ number_format($data->akm_penyusutan + $data->jml_penyusutan_inv) }}
+                                                    {{ number_format($data->jml_penyusutan_inv) }}
                                                 </td>
                                                 <td class="text-center">Rp.
                                                     {{ number_format($data->nl_buku_inv) }}
