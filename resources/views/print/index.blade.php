@@ -12,7 +12,7 @@
 </style>
 <script src="https://cdn.tailwindcss.com"></script>
 <title>Halaman Cetak</title>
-<table style="width:100%">
+<table style="width: 100%">
     <thead>
         <tr>
 
@@ -26,7 +26,7 @@
         </tr>
         <tr>
         <tr>
-            <th class="text-center">Aktiva Tetap</th>
+            <th class="text-center"> Aktiva Tetap</th>
         </tr>
         </tr>
 
@@ -43,13 +43,13 @@
                     <td class="text-center">Rp. {{ number_format($data->harga_perolehan) }}</td>
                     <td class="text-center">Rp. {{ number_format($data->akumulasi_penyusutan) }}
                     </td>
-                    <td class="text-center">Rp. {{ number_format($data->penyusutan_bulan) }}
+                    <td class="text-center">Rp. {{ number_format($data->penyu_bln) }}
                     </td>
                     <td class="text-center">Rp.
-                        {{ number_format($data->akumulasi_penyusutan + $data->penyusutan_bulan) }}
+                        {{ number_format($data->jml_penyusutan_bln) }}
                     </td>
                     <td class="text-center">Rp.
-                        {{ number_format($data->harga_perolehan - $data->jml_penyusutan_bln) }}
+                        {{ number_format($data->nilai_buku) }}
                     </td>
 
 
@@ -82,7 +82,7 @@
             </tr>
 
             <tr>
-                <td class="text-center">
+                <td>
                     <b>Inventaris</b>
                 </td>
             </tr>
@@ -104,13 +104,13 @@
                     <td class="text-center">Rp.
                         {{ number_format($data->akm_penyusutan) }}
                     </td>
-                    <td class="text-center">Rp. {{ number_format($data->penyusutan_bln) }}
+                    <td class="text-center">Rp. {{ number_format($data->penyusutan_bln_inv) }}
                     </td>
                     <td class="text-center">Rp.
-                        {{ number_format($data->akm_penyusutan + $data->jml_penyusutan_inv) }}
+                        {{ number_format($data->jml_penyusutan_inv) }}
                     </td>
                     <td class="text-center">Rp.
-                        {{ number_format($data->jml_hrg_perolehan - $data->nl_buku_inv) }}
+                        {{ number_format($data->nl_buku_inv) }}
                     </td>
 
 
@@ -144,25 +144,9 @@
                 </td>
             </tr>
         @endforeach
-        <tr>
-            <td class="text-center"><b>Total Aktiva Tetap & Inventaris</b></td>
-            <td class="text-center"><b>Rp.
-                    {{ number_format($sumAktiva->harga_peroleh + $sumInventaris->jml_hrg_perolehan) }}</b></td>
-            <td class="text-center"><b>Rp.
-                    {{ number_format($sumAktiva->ak_penyusutan + $sumInventaris->akm_penyusutan) }}</b></td>
-            <td class="text-center"><b>Rp.
-                    {{ number_format($sumAktiva->penyusutan_bln + $sumInventaris->penyusutan_bln_inv) }}</b></td>
-            <td class="text-center"><b>Rp.
-                    {{ number_format($sumAktiva->jml_penyu_bln + $sumInventaris->jml_penyusutan_inv) }}</b></td>
-            <td class="text-center"><b>Rp.
-                    {{ number_format($sumAktiva->nilai_buku + $sumInventaris->nl_buku_inv) }}</b></td>
-
-        </tr>
     </tbody>
 
     </tbody>
-
-
 
 
 </table>

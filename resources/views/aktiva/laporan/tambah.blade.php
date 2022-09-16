@@ -42,7 +42,7 @@
                                     <label for="tgl_perolehan" class="col-sm-2 col-form-label">Tanggal
                                         Perolehan</label>
                                     <div class="col-sm-10">
-                                        <input type="date" class="form-control" name="tgl_perolehan"
+                                        <input type="month" class="form-control" name="tgl_perolehan"
                                             value="{{ old('tgl_perolehan') }}">
                                     </div>
                                     <span class="text-danger">{{ $errors->first('tgl_perolehan') }}</span>

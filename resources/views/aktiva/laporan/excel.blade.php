@@ -7,7 +7,7 @@
             <th scope="col" class="text-center">Tanggal Perolehan</th>
             <th scope="col" class="text-center">Harga Perolehan</th>
             <th scope="col" class="text-center">Umur Teknis</th>
-            <th scope="col" class="text-center" width="10%">Penghapusan</th>
+            <th scope="col" class="text-center">Penghapusan</th>
             <th scope="col" class="text-center">Akumulasi Penyusutan</th>
             <th scope="col" class="text-center">Penyusutan (dalam bulan)</th>
             <th scope="col" class="text-center">Jumlah Penyusutan</th>
@@ -25,7 +25,7 @@
                         {{ \App\Models\Aktiva::find($data->aktiva_id)['nama'] }}
                     </td>
                     <td class="text-center">{{ $data->nama }}</td>
-                    <td class="text-center">{{ $data->tgl_perolehan }}</td>
+                    <td class="text-center">{{ \Carbon\Carbon::parse($data->tgl_perolehan)->format('F Y') }}</td>
                     <td class="text-center">Rp. {{ number_format($data->harga_perolehan) }}
                     </td>
                     <td class="text-center">{{ $data->umur_teknis }} bln</td>

@@ -79,7 +79,7 @@ class LaporanAktivaController extends Controller
 
         $simpanData->aktiva_id = $request->aktiva_id;
         $simpanData->nama = $request->nama;
-        $simpanData->tgl_perolehan = $request->tgl_perolehan;
+        $simpanData->tgl_perolehan = $request->tgl_perolehan . '-01 00:00:00';
         $simpanData->harga_perolehan = $request->harga_perolehan;
         $simpanData->umur_teknis = $request->umur_teknis;
         $simpanData->penghapusan = $request->penghapusan;
@@ -107,7 +107,23 @@ class LaporanAktivaController extends Controller
     public function update($id, Request $request)
     {
         $laporan = LaporanAktiva::find($id);
-        $laporan->update($request->all());
+
+        $laporan->aktiva_id = $request->aktiva_id;
+        $laporan->nama = $request->nama;
+        $laporan->tgl_perolehan = $request->tgl_perolehan . '-01 00:00:00';
+        $laporan->harga_perolehan = $request->harga_perolehan;
+        $laporan->umur_teknis = $request->umur_teknis;
+        $laporan->penghapusan = $request->penghapusan;
+        $laporan->ak_penyusutan = $request->ak_penyusutan;
+        $laporan->penyusutan_bln = $request->penyusutan_bln;
+        $laporan->jml_penyu_bln = $request->jml_penyu_bln;
+        $laporan->nilai_buku = $request->nilai_buku;
+        $laporan->keterangan = $request->keterangan;
+
+        // dd($laporan);
+        // die;
+        $laporan->save();
+
 
         return redirect('/laporan-aktiva')->with('info', 'Sukses Mengupdate Data');
     }
@@ -125,15 +141,16 @@ class LaporanAktivaController extends Controller
         return Excel::download(new ExportLaporanAktiva, 'laporan-aktiva-' . $date . '.xlsx');
     }
 
-    public function cetak()
+    public function cetak(Request $request)
     {
+        $month = $request->tgl_perolehan;
         $startDate = request()->input('startDate');
         $startDate = $startDate . " 00:00";
         $endDate   = request()->input('endDate');
         $endDate = $endDate . " 23:59";
         $laporanAktiva = DB::table('laporan_aktiva')
             ->select()
-            ->whereBetween('tgl_perolehan', [$startDate, $endDate])
+            ->where('tgl_perolehan', 'LIKE', '%' . $month . '%')
             ->get();
         return view('aktiva.laporan.cetak', ['laporanAktiva' => $laporanAktiva]);
     }

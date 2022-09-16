@@ -92,7 +92,8 @@
                                                     {{ \App\Models\Aktiva::find($data->aktiva_id)['nama'] }}
                                                 </td>
                                                 <td class="text-center">{{ $data->nama }}</td>
-                                                <td class="text-center">{{ $data->tgl_perolehan }}</td>
+                                                <td class="text-center">
+                                                    {{ \Carbon\Carbon::parse($data->tgl_perolehan)->format('F Y') }}</td>
                                                 <td class="text-center">Rp. {{ number_format($data->harga_perolehan) }}
                                                 </td>
                                                 <td class="text-center">{{ $data->umur_teknis }}</td>
@@ -258,29 +259,16 @@
                                             target="_blank">
                                             @csrf
                                             <div class="form-group">
-                                                <label for="startDate">Tanggal Awal <span
+                                                <label for="tgl_perolehan">Pilih Bulan <span
                                                         class="text-danger">*</span></label>
-                                                <input type="date" name="startDate" id="startDate"
+                                                <input type="month" name="tgl_perolehan" id="tgl_perolehan"
                                                     class="form-control" required>
 
-                                                @if ($errors->has('startDate'))
-                                                    <span class="text-danger">{{ $errors->first('startDate') }}</span>
+                                                @if ($errors->has('tgl_perolehan'))
+                                                    <span class="text-danger">{{ $errors->first('tgl_perolehan') }}</span>
                                                 @endif
 
                                             </div>
-
-                                            <div class="form-group">
-                                                <label for="endDate">Tanggal Akhir <span
-                                                        class="text-danger">*</span></label>
-                                                <input type="date" name="endDate" id="endDate" class="form-control"
-                                                    required>
-
-                                                @if ($errors->has('endDate'))
-                                                    <span class="text-danger">{{ $errors->first('endDate') }}</span>
-                                                @endif
-
-                                            </div>
-
 
                                             <div class="float-right mr-3">
                                                 <button type="submit" class="btn btn-danger text-white">Cetak</button>

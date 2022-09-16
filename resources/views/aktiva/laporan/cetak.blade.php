@@ -40,7 +40,7 @@
                         {{ \App\Models\Aktiva::find($data->aktiva_id)['nama'] }}
                     </td>
                     <td class="text-center">{{ $data->nama }}</td>
-                    <td class="text-center">{{ $data->tgl_perolehan }}</td>
+                    <td class="text-center">{{ \Carbon\Carbon::parse($data->tgl_perolehan)->format('F Y') }}</td>
                     <td class="text-center">Rp. {{ number_format($data->harga_perolehan) }}
                     </td>
                     <td class="text-center">{{ $data->umur_teknis }}</td>

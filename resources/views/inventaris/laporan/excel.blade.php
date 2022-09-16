@@ -30,7 +30,7 @@
                     <td class="text-center">{{ $data->nama }}</td>
                     <td class="text-center">{{ $data->lokasi }}</td>
                     <td class="text-center">{{ $data->kelompok }}</td>
-                    <td class="text-center">{{ $data->tgl_perolehan }}</td>
+                    <td class="text-center">{{ \Carbon\Carbon::parse($data->tgl_perolehan)->format('F Y') }}</td>
                     <td class="text-center">{{ $data->banyak }}</td>
                     <td class="text-center">Rp. {{ number_format($data->harga_satuan) }}</td>
                     <td class="text-center">Rp. {{ number_format($data->jml_hrg_perolehan) }}

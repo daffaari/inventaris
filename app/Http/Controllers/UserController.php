@@ -46,7 +46,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return redirect('/data-user')->with('error', 'Sukses Menyimpan Data');
+        return redirect('/data-user')->with('message', 'Sukses Menyimpan Data');
     }
 
     public function update()

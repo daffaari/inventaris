@@ -214,45 +214,20 @@
                                             <form action="{{ route('print') }}" method="GET" target="_blank">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="startDate">Tanggal Awal <span
+                                                    <label for="tgl_perolehan">Pilih Bulan<span
                                                             class="text-danger">*</span></label>
-                                                    <input type="date" name="startDate" id="startDate"
+                                                    <input type="month" name="tgl_perolehan" id="tgl_perolehan"
                                                         class="form-control" required>
 
-                                                    @if ($errors->has('startDate'))
-                                                        <span class="text-danger">{{ $errors->first('startDate') }}</span>
+                                                    @if ($errors->has('tgl_perolehan'))
+                                                        <span
+                                                            class="text-danger">{{ $errors->first('tgl_perolehan') }}</span>
                                                     @endif
 
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <label for="endDate">Tanggal Akhir <span
-                                                            class="text-danger">*</span></label>
-                                                    <input type="date" name="endDate" id="endDate" class="form-control"
-                                                        required>
-
-                                                    @if ($errors->has('endDate'))
-                                                        <span class="text-danger">{{ $errors->first('endDate') }}</span>
-                                                    @endif
-
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="pj">Penanggung Jawab <span
-                                                            class="text-danger">*</span></label>
-                                                    <input type="text" name="pj" id="pj" class="form-control"
-                                                        required>
-
-                                                    @if ($errors->has('pj'))
-                                                        <span class="text-danger">{{ $errors->first('pj') }}</span>
-                                                    @endif
-
-                                                </div>
-
 
                                                 <div class="float-right mr-3">
-                                                    <button type="submit"
-                                                        class="btn btn-danger text-white">Cetak</button>
+                                                    <button type="submit" class="btn btn-danger text-white">Cetak</button>
                                                 </div>
                                             </form>
 

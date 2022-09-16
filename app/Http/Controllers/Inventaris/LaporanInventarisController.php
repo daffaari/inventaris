@@ -91,7 +91,7 @@ class LaporanInventarisController extends Controller
         $simpanData->nama = $request->nama;
         $simpanData->lokasi = $request->lokasi;
         $simpanData->kelompok = $request->kelompok;
-        $simpanData->tgl_perolehan = $request->tgl_perolehan;
+        $simpanData->tgl_perolehan = $request->tgl_perolehan . '-01 00:00:00';
         $simpanData->banyak = $request->banyak;
         $simpanData->harga_satuan = $request->harga_satuan;
         $simpanData->jml_hrg_perolehan = $request->jml_hrg_perolehan;
@@ -121,7 +121,24 @@ class LaporanInventarisController extends Controller
     public function update($id, Request $request)
     {
         $laporan = LaporanInventaris::find($id);
-        $laporan->update($request->all());
+
+        $laporan->inventaris_id = $request->inventaris_id;
+        $laporan->nama = $request->nama;
+        $laporan->lokasi = $request->lokasi;
+        $laporan->kelompok = $request->kelompok;
+        $laporan->tgl_perolehan = $request->tgl_perolehan . '-01 00:00:00';
+        $laporan->banyak = $request->banyak;
+        $laporan->harga_satuan = $request->harga_satuan;
+        $laporan->jml_hrg_perolehan = $request->jml_hrg_perolehan;
+        $laporan->umur = $request->umur;
+        $laporan->penghapusan = $request->penghapusan;
+        $laporan->akum_penyusutan = $request->akum_penyusutan;
+        $laporan->penyusutan_bln = $request->penyusutan_bln;
+        $laporan->jml_penyusutan = $request->jml_penyusutan;
+        $laporan->nilai_buku = $request->nilai_buku;
+        $laporan->keterangan = $request->keterangan;
+
+        $laporan->save();
 
         return redirect('/laporan-inventaris')->with('info', 'Sukses Mengupdate Data');
     }
@@ -139,15 +156,16 @@ class LaporanInventarisController extends Controller
         return Excel::download(new ExportLaporanInventaris, 'laporan-inventaris-' . $date . '.xlsx');
     }
 
-    public function cetak()
+    public function cetak(Request $request)
     {
+        $month = $request->tgl_perolehan;
         $startDate = request()->input('startDate');
         $startDate = $startDate . " 00:00";
         $endDate   = request()->input('endDate');
         $endDate = $endDate . " 23:59";
         $laporanInventaris = DB::table('laporan_inventaris')
             ->select()
-            ->whereBetween('tgl_perolehan', [$startDate, $endDate])
+            ->where('tgl_perolehan', 'LIKE', '%' . $month . '%')
             ->get();
         return view('inventaris.laporan.cetak', ['laporanInventaris' => $laporanInventaris]);
     }

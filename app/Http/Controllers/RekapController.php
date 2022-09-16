@@ -63,10 +63,11 @@ class RekapController extends Controller
         );
     }
 
-    public function print()
+    public function print(Request $request)
     {
-        $startDate = request()->input('startDate');
-        $startDate = $startDate . " 00:00";
+        $month = $request->tgl_perolehan;
+        //$startDate = $startDate . " 00:00";
+        //dd($month);
         $endDate   = request()->input('endDate');
         $endDate = $endDate . " 23:59";
         $pj = request()->input('pj');
@@ -78,7 +79,7 @@ class RekapController extends Controller
             ->selectRaw('sum(jml_penyu_bln) as jml_penyusutan_bln')
             ->selectRaw('sum(nilai_buku) as nilai_buku')
             ->groupBy('aktiva_id')
-            ->whereBetween('tgl_perolehan', [$startDate, $endDate])
+            ->where('tgl_perolehan', 'LIKE', '%' . $month . '%')
             ->get();
 
         $resultAktiva = DB::table('laporan_aktiva')
@@ -88,7 +89,7 @@ class RekapController extends Controller
             SUM(jml_penyu_bln) as jml_penyusutan_bln,
             SUM(nilai_buku) as nl_buku,
             keterangan as ket '))
-            ->whereBetween('tgl_perolehan', [$startDate, $endDate])
+            ->where('tgl_perolehan', 'LIKE', '%' . $month . '%')
             ->get();
 
         $laporanInventaris = DB::table('laporan_inventaris')->select()
@@ -98,7 +99,7 @@ class RekapController extends Controller
             ->selectRaw('sum(jml_penyusutan) as jml_penyusutan_inv')
             ->selectRaw('sum(nilai_buku) as nl_buku_inv')
             ->groupBy('inventaris_id')
-            ->whereBetween('tgl_perolehan', [$startDate, $endDate])
+            ->where('tgl_perolehan', 'LIKE', '%' . $month . '%')
             ->get();
 
         $resultInventaris = DB::table('laporan_inventaris')
@@ -108,7 +109,7 @@ class RekapController extends Controller
         SUM(jml_penyusutan) as jml_penyusutan_inv,
         SUM(nilai_buku) as nl_buku_inv,
         keterangan as ket '))
-            ->whereBetween('tgl_perolehan', [$startDate, $endDate])
+            ->where('tgl_perolehan', 'LIKE', '%' . $month . '%')
             ->get();
 
         $sumAktiva = DB::table('laporan_aktiva')->select()
@@ -117,7 +118,7 @@ class RekapController extends Controller
             ->selectRaw('sum(penyusutan_bln) as penyusutan_bulan')
             ->selectRaw('sum(jml_penyu_bln) as jml_penyusutan_bln')
             ->selectRaw('sum(nilai_buku) as nilai_buku')
-            ->whereBetween('tgl_perolehan', [$startDate, $endDate])
+            ->where('tgl_perolehan', 'LIKE', '%' . $month . '%')
             ->first();
 
         $sumInventaris = DB::table('laporan_inventaris')->select()
@@ -126,7 +127,7 @@ class RekapController extends Controller
             ->selectRaw('sum(penyusutan_bln) as penyusutan_bln_inv')
             ->selectRaw('sum(jml_penyusutan) as jml_penyusutan_inv')
             ->selectRaw('sum(nilai_buku) as nl_buku_inv')
-            ->whereBetween('tgl_perolehan', [$startDate, $endDate])
+            ->where('tgl_perolehan', 'LIKE', '%' . $month . '%')
             ->first();
 
 
