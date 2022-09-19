@@ -125,7 +125,7 @@
                                         </tr>
 
                                         <tr>
-                                            <td>
+                                            <td class="text-center">
                                                 <b>Inventaris</b>
                                             </td>
                                         </tr>
@@ -186,6 +186,38 @@
 
                                             </td>
                                         </tr>
+                                    @endforeach
+                                </tbody>
+
+                                <tbody>
+                                    @foreach ($resultInventaris as $resultInv)
+                                        @foreach ($resultAktiva as $a)
+                                            <tr>
+                                                <td>
+
+                                                    <b> Total Aktiva Tetap & Inventaris</b>
+
+                                                <td class="text-center"> <b> Rp.
+                                                        {{ number_format($a->hrg_perolehan + $resultInv->jml_hrg_perolehan) }}
+                                                    </b>
+                                                </td>
+                                                <td class="text-center"> <b> Rp.
+                                                        {{ number_format($a->akumulasi_penyusutan + $resultInv->akm_penyusutan) }}
+                                                    </b></td>
+                                                <td class="text-center"> <b> Rp.
+                                                        {{ number_format($a->penyusutan_bulan + $resultInv->penyusutan_bln_inv) }}
+                                                    </b>
+                                                </td>
+                                                <td class="text-center"> <b> Rp.
+                                                        {{ number_format($a->jml_penyusutan_bln + $resultInv->jml_penyusutan_inv) }}
+                                                    </b></td>
+                                                <td class="text-center"> <b> Rp.
+                                                        {{ number_format($a->nl_buku + $resultInv->nl_buku_inv) }}
+                                                    </b></td>
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     @endforeach
                                 </tbody>
 

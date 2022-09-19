@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <title>Data Aktiva</title>
+    <title>Data Inventaris</title>
     <main id="main" class="main">
         <section class="section">
             <div class="row">

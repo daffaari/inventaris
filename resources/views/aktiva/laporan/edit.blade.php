@@ -42,7 +42,7 @@
                                         Perolehan</label>
                                     <div class="col-sm-10">
                                         <input type="month" class="form-control" name="tgl_perolehan"
-                                            value="{{ \Carbon\Carbon::parse($data->tgl_perolehan)->format('F Y') }}">
+                                            value="{{ \Carbon\Carbon::parse($data->tgl_perolehan)->format('Y F') }}">
                                     </div>
                                     <span class="text-danger">{{ $errors->first('tgl_perolehan') }}</span>
                                 </div>

@@ -43,7 +43,7 @@
                     <td class="text-center">Rp. {{ number_format($data->harga_perolehan) }}</td>
                     <td class="text-center">Rp. {{ number_format($data->akumulasi_penyusutan) }}
                     </td>
-                    <td class="text-center">Rp. {{ number_format($data->penyu_bln) }}
+                    <td class="text-center">Rp. {{ number_format($data->jml_penyusutan_bln) }}
                     </td>
                     <td class="text-center">Rp.
                         {{ number_format($data->jml_penyusutan_bln) }}
@@ -82,7 +82,7 @@
             </tr>
 
             <tr>
-                <td>
+                <td class="text-center">
                     <b>Inventaris</b>
                 </td>
             </tr>
@@ -146,14 +146,52 @@
         @endforeach
     </tbody>
 
+    <tbody>
+        @foreach ($resultInventaris as $resultInv)
+            @foreach ($resultAktiva as $a)
+                <tr>
+                    <td>
+
+                        <b> Total Aktiva Tetap & Inventaris</b>
+
+                    <td class="text-center"> <b> Rp.
+                            {{ number_format($a->hrg_perolehan + $resultInv->jml_hrg_perolehan) }}
+                        </b>
+                    </td>
+                    <td class="text-center"> <b> Rp.
+                            {{ number_format($a->akumulasi_penyusutan + $resultInv->akm_penyusutan) }}
+                        </b></td>
+                    <td class="text-center"> <b> Rp.
+                            {{ number_format($a->penyusutan_bulan + $resultInv->penyusutan_bln_inv) }}
+                        </b>
+                    </td>
+                    <td class="text-center"> <b> Rp.
+                            {{ number_format($a->jml_penyusutan_bln + $resultInv->jml_penyusutan_inv) }}
+                        </b></td>
+                    <td class="text-center"> <b> Rp.
+                            {{ number_format($a->nl_buku + $resultInv->nl_buku_inv) }}
+                        </b></td>
+
+                    </td>
+                </tr>
+            @endforeach
+        @endforeach
+    </tbody>
+
     </tbody>
 
 
 </table>
-<div class="float-right my-3 mx-2">
+<div class="float-right my-2 mx-2">
     <p> <b> Ambon , {{ Carbon\Carbon::now()->format('d-m-Y') }} </b></p>
+    <p class="my-5">
+        <b>PT.BANK PEMBANGUNAN DAERAH MALUKU MALUT</b>
+        <br>
+        <b style="text-align:center;">DIVISI UMUM DAN HUKUM</b>
+    </p>
+
     <br>
-    <p class="my-12"><b>{{ $pj }}</b> </p>
+    <p class="my-12" style="text-align: center"><b>M. RAKHANKOLY</b></p>
 
 </div>
 
